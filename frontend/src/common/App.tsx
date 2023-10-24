@@ -7,6 +7,7 @@ import { EventsListView } from '../events/EventsListView';
 import { ClippyProvider } from '@react95/clippy';
 import { PaymentsPage } from 'src/payments/PaymentsPage';
 
+
 // zmiencie sobie routy jak będzie trzeba B)
 const router = createBrowserRouter([
   {
