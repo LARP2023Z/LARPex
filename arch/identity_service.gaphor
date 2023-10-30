@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gaphor xmlns="http://gaphor.sourceforge.net/model" version="3.0" gaphor-version="2.21.0">
+<StyleSheet id="58d6989a-66f8-11ec-b4c8-0456e5e540ed"/>
+<Package id="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed">
+<name>
+<val>IdentityService</val>
+</name>
+<ownedDiagram>
+<reflist>
+<ref refid="58d6c536-66f8-11ec-b4c8-0456e5e540ed"/>
+</reflist>
+</ownedDiagram>
+<ownedType>
+<reflist>
+<ref refid="fd35d0bc-71e2-11ee-ab0f-52db640fd92b"/>
+<ref refid="138be842-71e3-11ee-ab0f-52db640fd92b"/>
+<ref refid="5353a992-71e3-11ee-ab0f-52db640fd92b"/>
+</reflist>
+</ownedType>
+</Package>
+<Diagram id="58d6c536-66f8-11ec-b4c8-0456e5e540ed">
+<element>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</element>
+<name>
+<val>IdentityService Diagram</val>
+</name>
+<ownedPresentation>
+<reflist>
+<ref refid="fd361fc2-71e2-11ee-ab0f-52db640fd92b"/>
+<ref refid="3a4b0bca-71e3-11ee-ab0f-52db640fd92b"/>
+<ref refid="138c37ac-71e3-11ee-ab0f-52db640fd92b"/>
+<ref refid="53540a36-71e3-11ee-ab0f-52db640fd92b"/>
+<ref refid="611c0ac4-71e3-11ee-ab0f-52db640fd92b"/>
+<ref refid="69ac7624-71e3-11ee-ab0f-52db640fd92b"/>
+</reflist>
+</ownedPresentation>
+</Diagram>
+<Component id="fd35d0bc-71e2-11ee-ab0f-52db640fd92b">
+<name>
+<val>IdentityService</val>
+</name>
+<nestedClassifier>
+<reflist>
+<ref refid="3a4aaf86-71e3-11ee-ab0f-52db640fd92b"/>
+</reflist>
+</nestedClassifier>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="fd361fc2-71e2-11ee-ab0f-52db640fd92b"/>
+</reflist>
+</presentation>
+</Component>
+<ComponentItem id="fd361fc2-71e2-11ee-ab0f-52db640fd92b">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 165.69140625, 95.6875)</val>
+</matrix>
+<top-left>
+<val>(-121.69140625, -6.6875)</val>
+</top-left>
+<width>
+<val>760.0</val>
+</width>
+<height>
+<val>669.0</val>
+</height>
+<children>
+<reflist>
+<ref refid="3a4b0bca-71e3-11ee-ab0f-52db640fd92b"/>
+</reflist>
+</children>
+<diagram>
+<ref refid="58d6c536-66f8-11ec-b4c8-0456e5e540ed"/>
+</diagram>
+<subject>
+<ref refid="fd35d0bc-71e2-11ee-ab0f-52db640fd92b"/>
+</subject>
+</ComponentItem>
+<Interface id="138be842-71e3-11ee-ab0f-52db640fd92b">
+<name>
+<val>IUsers</val>
+</name>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="138c37ac-71e3-11ee-ab0f-52db640fd92b"/>
+</reflist>
+</presentation>
+<supplierDependency>
+<reflist>
+<ref refid="6afad688-71e3-11ee-ab0f-52db640fd92b"/>
+</reflist>
+</supplierDependency>
+</Interface>
+<InterfaceItem id="138c37ac-71e3-11ee-ab0f-52db640fd92b">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 373.5, 820.3849166042971)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>101.0</val>
+</width>
+<height>
+<val>70.0</val>
+</height>
+<diagram>
+<ref refid="58d6c536-66f8-11ec-b4c8-0456e5e540ed"/>
+</diagram>
+<subject>
+<ref refid="138be842-71e3-11ee-ab0f-52db640fd92b"/>
+</subject>
+<folded>
+<val>0</val>
+</folded>
+</InterfaceItem>
+<Class id="3a4aaf86-71e3-11ee-ab0f-52db640fd92b">
+<clientDependency>
+<reflist>
+<ref refid="651ce04e-71e3-11ee-ab0f-52db640fd92b"/>
+<ref refid="6afad688-71e3-11ee-ab0f-52db640fd92b"/>
+</reflist>
+</clientDependency>
+<name>
+<val>IdentityService</val>
+</name>
+<nestingClass>
+<ref refid="fd35d0bc-71e2-11ee-ab0f-52db640fd92b"/>
+</nestingClass>
+<presentation>
+<reflist>
+<ref refid="3a4b0bca-71e3-11ee-ab0f-52db640fd92b"/>
+</reflist>
+</presentation>
+</Class>
+<ClassItem id="3a4b0bca-71e3-11ee-ab0f-52db640fd92b">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 182.30859375, 280.6075728542971)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>152.0</val>
+</width>
+<height>
+<val>55.0</val>
+</height>
+<diagram>
+<ref refid="58d6c536-66f8-11ec-b4c8-0456e5e540ed"/>
+</diagram>
+<parent>
+<ref refid="fd361fc2-71e2-11ee-ab0f-52db640fd92b"/>
+</parent>
+<subject>
+<ref refid="3a4aaf86-71e3-11ee-ab0f-52db640fd92b"/>
+</subject>
+</ClassItem>
+<Interface id="5353a992-71e3-11ee-ab0f-52db640fd92b">
+<name>
+<val>ILoginUser</val>
+</name>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="53540a36-71e3-11ee-ab0f-52db640fd92b"/>
+</reflist>
+</presentation>
+<supplierDependency>
+<reflist>
+<ref refid="651ce04e-71e3-11ee-ab0f-52db640fd92b"/>
+</reflist>
+</supplierDependency>
+</Interface>
+<InterfaceItem id="53540a36-71e3-11ee-ab0f-52db640fd92b">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 360.50000000000006, 124.49819785429708)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>114.0</val>
+</width>
+<height>
+<val>70.0</val>
+</height>
+<diagram>
+<ref refid="58d6c536-66f8-11ec-b4c8-0456e5e540ed"/>
+</diagram>
+<subject>
+<ref refid="5353a992-71e3-11ee-ab0f-52db640fd92b"/>
+</subject>
+<folded>
+<val>0</val>
+</folded>
+</InterfaceItem>
+<InterfaceRealizationItem id="611c0ac4-71e3-11ee-ab0f-52db640fd92b">
+<diagram>
+<ref refid="58d6c536-66f8-11ec-b4c8-0456e5e540ed"/>
+</diagram>
+<horizontal>
+<val>0</val>
+</horizontal>
+<orthogonal>
+<val>0</val>
+</orthogonal>
+<subject>
+<ref refid="651ce04e-71e3-11ee-ab0f-52db640fd92b"/>
+</subject>
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 420.28917843118336, 387.4972999189899)</val>
+</matrix>
+<points>
+<val>[(3.710821568816641, -192.9991020646928), (3.710821568816641, -11.202227064692806)]</val>
+</points>
+<head-connection>
+<ref refid="53540a36-71e3-11ee-ab0f-52db640fd92b"/>
+</head-connection>
+<tail-connection>
+<ref refid="3a4b0bca-71e3-11ee-ab0f-52db640fd92b"/>
+</tail-connection>
+</InterfaceRealizationItem>
+<InterfaceRealization id="651ce04e-71e3-11ee-ab0f-52db640fd92b">
+<client>
+<ref refid="3a4aaf86-71e3-11ee-ab0f-52db640fd92b"/>
+</client>
+<presentation>
+<reflist>
+<ref refid="611c0ac4-71e3-11ee-ab0f-52db640fd92b"/>
+</reflist>
+</presentation>
+<supplier>
+<ref refid="5353a992-71e3-11ee-ab0f-52db640fd92b"/>
+</supplier>
+</InterfaceRealization>
+<DependencyItem id="69ac7624-71e3-11ee-ab0f-52db640fd92b">
+<diagram>
+<ref refid="58d6c536-66f8-11ec-b4c8-0456e5e540ed"/>
+</diagram>
+<horizontal>
+<val>0</val>
+</horizontal>
+<orthogonal>
+<val>0</val>
+</orthogonal>
+<subject>
+<ref refid="6afad688-71e3-11ee-ab0f-52db640fd92b"/>
+</subject>
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 446.78917843118336, 427.9972999189899)</val>
+</matrix>
+<points>
+<val>[(-29.28917843118336, 392.38761668530725), (-39.0, 3.2977729353071936)]</val>
+</points>
+<head-connection>
+<ref refid="138c37ac-71e3-11ee-ab0f-52db640fd92b"/>
+</head-connection>
+<tail-connection>
+<ref refid="3a4b0bca-71e3-11ee-ab0f-52db640fd92b"/>
+</tail-connection>
+</DependencyItem>
+<Usage id="6afad688-71e3-11ee-ab0f-52db640fd92b">
+<client>
+<ref refid="3a4aaf86-71e3-11ee-ab0f-52db640fd92b"/>
+</client>
+<presentation>
+<reflist>
+<ref refid="69ac7624-71e3-11ee-ab0f-52db640fd92b"/>
+</reflist>
+</presentation>
+<supplier>
+<ref refid="138be842-71e3-11ee-ab0f-52db640fd92b"/>
+</supplier>
+</Usage>
+</gaphor>
