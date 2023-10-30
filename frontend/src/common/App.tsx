@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import Placeholder from './Placeholder';
 
 import original from 'react95/dist/themes/original';
+import {MyAppBar} from "../events/AppBar";
 
 // zmiencie sobie routy jak będzie trzeba B)
 const router = createBrowserRouter([
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
   {
     path: '/payments',
     element: <Placeholder title="payments" />,
-  },
+  }
 ]);
 
 const App = () => {
