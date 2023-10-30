@@ -1,5 +1,5 @@
 import {FC, useState} from "react";
-import {AppBar, Button, MenuList, MenuListItem, Separator, TextInput, Toolbar} from "react95";
+import {AppBar, Button, TextInput, Toolbar} from "react95";
 
 export const MyAppBar: FC = () => {
     const [open, setOpen] = useState(false);
