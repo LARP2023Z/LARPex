@@ -1,15 +1,14 @@
-import {StrictMode} from 'react';
 import * as ReactDOM from 'react-dom/client';
-import App from "./common/App";
-import "./Background.css"
-import {MyAppBar} from "./common/AppBar";
+import App from './common/App';
+import './Background.css';
+import { MyAppBar } from './common/AppBar';
 
 const root = ReactDOM.createRoot(
-    document.getElementById('root') as HTMLElement
+  document.getElementById('root') as HTMLElement
 );
 root.render(
-    <StrictMode>
-        <App/>
-        <MyAppBar/>
-    </StrictMode>
+  <>
+    <App />
+    <MyAppBar />
+  </>
 );
