@@ -1,0 +1,6 @@
+body {
+    background-image: url('assets/windows_xp_bliss-1600x900.jpg');
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-attachment: fixed;
+}
