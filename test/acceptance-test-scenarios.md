@@ -2,67 +2,89 @@
 
 # Acceptance test scenarios
 
-## <span>Use case UC9:</span> Wyświetlenie listy wydarzeń
+## Use case UC9: Wyświetlenie listy wydarzeń
 
-### <span>Scenario UC9/1:</span> Events that user has access to exist
-<span>Given</span> User is logged in
-<span>And</span> Events that user has access to exist
-<span>When</span> List of events is requested
-<span>Then</span> List of events in chronological order is displayed
+### Scenario UC9/1: Events that user has access to exist
+Given:
+- User is logged in
+- Events that user has access to, exist
+1. User clicks button with the label "Wydarzenia"
+2. System closes window "Menu główne aplikacji użytkownika" 
+3. System displays a window "Lista wydarzeń" with events chronologically sorted.
+ 
 
-### <span>Scenario UC9/2:</span> Events that user has access to don't exist
-<span>Given</span> User is logged in
-<span>And</span> Events that user has access to don't exist
-<span>When</span> List of events is requested
-<span>Then</span> System displays an empty list
+### Scenario UC9/2: Events that user has access to don't exist
+Given:
+- User is logged in
+- Events that user has access to don't exist
+1. User clicks button with the label "Wydarzenia".
+2. System closes window "Menu główne aplikacji użytkownika" 
+3. System displays a window "Lista wydarzeń" with no events.
 
-## <span>Use case UC12:</span> Zapisanie się na wydarzenie
+### Scenario UC9/3: User exits event list.
+Given:
+- User is logged in
+- User clicked a button with the label "Wydarzenia".
+- System displayed a window with events visible to the User chronologically sorted.
+1. User clicks button with the label "Wróć".
+2. System closes window "Lista wydarzeń"
+3. System displays a window "Menu główne aplikacji użytkownika".
 
-### <span>Scenario UC12/1:</span> Event with this id does not exist
-<span>Given</span> User is logged in
-<span>And</span> Event with supplied id does not exist
-<span>When</span> Register to event is requested
-<span>Then</span> System displays information that event does not exist
+## Use case UC12: Zapisanie się na wydarzenie
 
-### <span>Scenario UC12/2:</span> Event exists but it is too late to register
-<span>Given</span> User is logged in
-<span>And</span> Event exists but is in a state in which registration is no longer possible due to time constraints
-<span>When</span> Register to event is requested
-<span>Then</span> System displays information about registration being no longer possible
+### Scenario UC12/1: Event exists but player limit is reached
+Given:
+- Event exists but player limit is reached
+1. User clicks a button with the label "Zapisz się"
+2. System displays a window named "Brak miejsc" with text "Niestety na wybrane wydarzenie nie ma już wolnych miejsc.".
+3. User clicks a button with the label "Ok.".
+4. System closes the window named "Brak miejsc".
+5. System displays a window named "Lista wydarzeń".
 
-### <span>Scenario UC12/3:</span> Event exists but player limit is reached
-<span>Given</span> User is logged in
-<span>And</span> Event exists but player limit is reached
-<span>When</span> Register to event is requested
-<span>Then</span> System displays information about the reached limit
+### Scenario UC12/2: Event exists but payment was not successful
+Given:
+- Event exists
+- Event hasn't reached the max number of players
+1. User clicks a button with the label "Zapisz się"
+ the payment was not successful.
+2. System displays a window named "Powodzenie" with text "W wyniku niepowodzenia płatności nie zapisano na wydarzenie.".
+3. User clicks a button with the label "Ok.".
+4. System closes the window named "Powodzenie".
+5. System displays a window named "Lista wydarzeń".
 
-### <span>Scenario UC12/4:</span> Event exists but payment was not successful
-<span>Given</span> User is logged in
-<span>And</span> Event exists
-<span>When</span> Register to event is requested
-<span>And</span> And there was a problem with payment verification
-<span>Then</span> System displays information about unsuccessful payment
+### Scenario UC12/3: Successful registration
+Given:
+- Event exists
+- Event hasn't reached the max number of players
+1. User clicks a button with the label "Zapisz się"
+2. System displays a window named "Niepowodzenie" with text "Z powodzeniem zapisano na wydarzenie".
+3. User clicks a button with the label "Ok.".
+4. System closes the window named "Niepowodzenie".
+5. System displays a window named "Lista wydarzeń".
 
-### <span>Scenario UC12/5:</span> Successful registration
-<span>Given</span> User is logged in
-<span>And</span> Event exists <span>When</span> Register to event is requested
-<span>Then</span> System displays information about successful registration
+## Use case UC7: Dokonaj płatności
 
-## <span>Use case UC7:</span> Dokonaj płatności
+### Scenario UC7/1: Succesfull payment for Event participation
+Given:
+- Event exists
+1. User selects to pay for event
+2. System displays a window named "Płatność" which contains a label "Kwota do zapłaty" with a price with currency code and a dropdown labeled "Metoda płatności" with possible payment methods.
+3. User selects payment method from the "Metoda płatności" dropdown.
+4. User clicks button with the label "Płatność".
+5. System redirects User to external payment system.
+6. System displays a window named "Powodzenie" with text "Płatność powiodła się" with a button labeled "OK".
+7. User clicks button labeled "OK".
+8. System displays window "Okno z możliwością płatności".
 
-### <span>Scenario UC7/1:</span> Event with this id does not exist
-<span>Given</span> User is logged in
-<span>And</span> Event exists
-<span>When</span> User selects to pay for event
-<span>Then</span> System redirects user to selected external payment service provider
 
-<style>
-    p {
-    white-space: pre;
-    }
-
-    span {
-        font-weight: 600;
-        color: #922D50
-    }
-</style>
+### Scenario UC7/2: Unsuccesfull payment for Event participation
+Given:
+- Event exists
+1. User selects to pay for event
+2. System displays a window named "Płatność" which contains a label "Kwota do zapłaty" with a price with currency code and a dropdown labeled "Metoda płatności" with possible payment methods.
+3. User selects payment method from the "Metoda płatności" dropdown.
+4. User clicks button with the label "Płatność".
+5. System redirects User to external payment system.
+6. System displays a window named "Niepowodzenie" with text "Płatność nie powiodła się" with a button labeled "OK".
+7. User clicks button labeled "OK".
+8. System displays window "Okno z możliwością płatności".
