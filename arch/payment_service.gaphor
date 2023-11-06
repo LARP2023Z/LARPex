@@ -2633,7 +2633,7 @@ existing classes or even new classes with specific responsibilities.</val>
 </Class>
 <ClassItem id="bf5416c5-71d0-11ee-83bb-98fa9b033447">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 760.7149486441947, 473.07253974218696)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 760.7149486441947, 472.48558944189523)</val>
 </matrix>
 <top-left>
 <val>(31.199999999999932, 12.840000000000089)</val>
@@ -2679,7 +2679,7 @@ existing classes or even new classes with specific responsibilities.</val>
 </Interface>
 <InterfaceItem id="14539543-71d2-11ee-8bf5-98fa9b033447">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, -279.6941406129353, -75.75789480555271)</val>
+<val>(1.0, 0.0, 0.0, 1.0, -279.6941406129353, -78.338924694806)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -2807,7 +2807,7 @@ existing classes or even new classes with specific responsibilities.</val>
 </Interface>
 <InterfaceItem id="6089dbc7-71d2-11ee-9d82-98fa9b033447">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 185.2458248585138, 1127.5665797486502)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 186.7535922080837, 1127.5665797486502)</val>
 </matrix>
 <top-left>
 <val>(120.19303819058194, -1.7280000000000655)</val>
@@ -2867,7 +2867,7 @@ existing classes or even new classes with specific responsibilities.</val>
 <val>(1.0, 0.0, 0.0, 1.0, 541.2427610619471, 602.4041924723675)</val>
 </matrix>
 <points>
-<val>[(15.271541571052353, -73.92559162735108), (3.869669594341474, 523.4343872762826)]</val>
+<val>[(40.128606022418694, -76.99926463310487), (5.374322429006497, 523.4343872762826)]</val>
 </points>
 <head-connection>
 <ref refid="bf5416c5-71d0-11ee-83bb-98fa9b033447"/>
@@ -2942,7 +2942,7 @@ existing classes or even new classes with specific responsibilities.</val>
 <val>(1.0, 0.0, 0.0, 1.0, 855.7387610619471, 607.8816676225134)</val>
 </matrix>
 <points>
-<val>[(61.20388232458424, -79.69654192764278), (848.6619420585134, 133.8111700520965)]</val>
+<val>[(63.02660791583139, -82.77021493339657), (848.6619420585134, 133.8111700520965)]</val>
 </points>
 <head-connection>
 <ref refid="bf5416c5-71d0-11ee-83bb-98fa9b033447"/>
@@ -3195,7 +3195,7 @@ existing classes or even new classes with specific responsibilities.</val>
 </Component>
 <ComponentItem id="b94acf2d-724a-11ee-9737-98fa9b033447">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, -331.97230525766327, -107.64298741231187)</val>
+<val>(1.0, 0.0, 0.0, 1.0, -330.1495796664161, -110.129710117774)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -3258,7 +3258,7 @@ existing classes or even new classes with specific responsibilities.</val>
 <val>(1.0, 0.0, 0.0, 1.0, 872.1874820143885, 412.05857089091535)</val>
 </matrix>
 <points>
-<val>[(44.75516137214288, -27.207870566486633), (890.6941411859209, -109.7870906659802)]</val>
+<val>[(46.57788696339003, -30.28154357224048), (890.6941411859209, -109.7870906659802)]</val>
 </points>
 <head-connection>
 <ref refid="bf5416c5-71d0-11ee-83bb-98fa9b033447"/>
@@ -3327,7 +3327,7 @@ existing classes or even new classes with specific responsibilities.</val>
 <val>(1.0, 0.0, 0.0, 1.0, 278.9074820143886, 514.6454340349655)</val>
 </matrix>
 <points>
-<val>[(-107.37362262732404, -184.76015235272337), (213.20806319727797, -545.7951624267023)]</val>
+<val>[(-107.37362262732404, -184.76015235272337), (215.03078878852511, -548.2818851321645)]</val>
 </points>
 <head-connection>
 <ref refid="e48e2a85-7249-11ee-980c-98fa9b033447"/>
@@ -3442,7 +3442,7 @@ existing classes or even new classes with specific responsibilities.</val>
 </Class>
 <ClassItem id="dec2bf56-7259-11ee-a30a-52db640fd92b">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 324.31285832692924, 326.69751169698)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 324.3128583269285, 326.69751169698)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -3483,7 +3483,7 @@ existing classes or even new classes with specific responsibilities.</val>
 </Class>
 <ClassItem id="e5b23648-7259-11ee-a30a-52db640fd92b">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 525.8640034540891, 81.04737737791834)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 527.1430693949991, 81.04737737791828)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -3521,7 +3521,7 @@ existing classes or even new classes with specific responsibilities.</val>
 <val>(1.0, 0.0, 0.0, 1.0, 2092.4210447022742, 163.79833611862585)</val>
 </matrix>
 <points>
-<val>[(12.672367021910247, -11.923266850254663), (106.65891073438297, -135.39394615301939)]</val>
+<val>[(12.672367021910247, -11.923266850254663), (107.93797667529316, -135.39394615301939)]</val>
 </points>
 <head-connection>
 <ref refid="3b540e68-71d2-11ee-a60d-98fa9b033447"/>
@@ -3696,7 +3696,7 @@ existing classes or even new classes with specific responsibilities.</val>
 </Class>
 <ClassItem id="632d1b9a-725c-11ee-a30a-52db640fd92b">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 824.0878504693299, 189.12144889080227)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 824.0878504693299, 189.1214488908022)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -3732,7 +3732,7 @@ existing classes or even new classes with specific responsibilities.</val>
 </Class>
 <ClassItem id="739d476e-725e-11ee-a30a-52db640fd92b">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 1060.2882678006863, 168.06351595028127)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 1063.2645326319005, 167.7055135586753)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -3776,7 +3776,7 @@ existing classes or even new classes with specific responsibilities.</val>
 <val>(1.0, 0.0, 0.0, 1.0, 726.2514183074161, 92.44901560570861)</val>
 </matrix>
 <points>
-<val>[(-128.1358730957494, 8.822663356097692), (2.0645442356071726, 7.906837634223379)]</val>
+<val>[(-126.31314750450235, 6.335940650635507), (6.863534658068261, 5.062112537155286)]</val>
 </points>
 <head-connection>
 <ref refid="632d1b9a-725c-11ee-a30a-52db640fd92b"/>
@@ -3898,7 +3898,7 @@ existing classes or even new classes with specific responsibilities.</val>
 <val>(1.0, 0.0, 0.0, 1.0, 606.0134566536618, 35.873907324560875)</val>
 </matrix>
 <points>
-<val>[(-57.44045810621064, -57.72493898606339), (-84.40237727814247, 45.60455415392953)]</val>
+<val>[(-55.61773251496345, -60.21166169152552), (-82.57965168689532, 43.11783144846734)]</val>
 </points>
 <head-connection>
 <ref refid="012ce772-7261-11ee-a30a-52db640fd92b"/>
@@ -3967,7 +3967,7 @@ existing classes or even new classes with specific responsibilities.</val>
 <val>(1.0, 0.0, 0.0, 1.0, 366.7525111846155, 64.08982018288884)</val>
 </matrix>
 <points>
-<val>[(-210.99065179755092, -4.027294036525333), (134.43188719076932, -85.94085184439136)]</val>
+<val>[(-210.99065179755092, -6.60832392577862), (136.25461278201647, -88.42757454985349)]</val>
 </points>
 <head-connection>
 <ref refid="14539543-71d2-11ee-8bf5-98fa9b033447"/>
@@ -4012,7 +4012,7 @@ existing classes or even new classes with specific responsibilities.</val>
 <val>(1.0, 0.0, 0.0, 1.0, 513.1389084333292, 186.9310743702465)</val>
 </matrix>
 <points>
-<val>[(31.97663677833748, -50.452612891756104), (54.09194034755072, 191.33847795962868)]</val>
+<val>[(33.79936236958463, -52.9393355972183), (55.91466593879784, 188.26480495387483)]</val>
 </points>
 <head-connection>
 <ref refid="632d1b9a-725c-11ee-a30a-52db640fd92b"/>
