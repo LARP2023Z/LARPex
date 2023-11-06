@@ -18,7 +18,6 @@ liquibase {
     def liquibaseUrl = project.hasProperty('liquibaseUrl') ? liquibaseUrl : null
     def liquibaseUsername = project.hasProperty('liquibaseUsername') ? liquibaseUsername : null
     def liquibasePassword = project.hasProperty('liquibasePassword') ? liquibasePassword : null
-    println (liquibaseUrl + " " + liquibaseUsername + " " + liquibasePassword)
     main {
       changelogFile 'master.xml'
       url liquibaseUrl
