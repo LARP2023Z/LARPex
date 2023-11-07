@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter @AllArgsConstructor
+@Getter @AllArgsConstructor
 public class PaymentConfirmationResponse {
     private int response;
 }

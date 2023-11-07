@@ -1,4 +1,7 @@
 package com.example.paymentservice;
 
-public interface IPayments {
+import com.example.paymentservice.Repository.IRepository;
+
+public interface IPayments extends IRepository {
+
 }
