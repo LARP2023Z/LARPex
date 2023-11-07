@@ -7,6 +7,6 @@ import lombok.Data;
 @Builder
 public class UserCredential {
 
-    private String passwordHash;
-    private String email;
+  private String passwordHash;
+  private String email;
 }
