@@ -2,11 +2,11 @@ name: Build user identity service backend
 
 on:
   push:
-    branches: ["master"]
+    branches: ["main"]
     paths:
       - "user-identity-be/**"
   pull_request:
-    branches: ["master"]
+    branches: ["main"]
     paths:
       - "user-identity-be/**"
 
