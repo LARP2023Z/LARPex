@@ -34,3 +34,17 @@ services:
     extends:
       file: ./be-events/docker-compose.yml
       service: be-events-service-db
+
+  # payments
+  payments:
+    extends:
+      file: ./payments-be/compose.yaml
+      service: payments
+    build: ./payments-be/
+    depends_on:
+      - payments-db
+
+  payments-db:
+    extends:
+      file: ./payments-be/compose.yaml
+      service: payments-db

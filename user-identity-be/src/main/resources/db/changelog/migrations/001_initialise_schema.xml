@@ -16,6 +16,6 @@
             <column name="email" type="VARCHAR(255)" />
         </createTable>
         <addPrimaryKey tableName="users" columnNames="id"
-                       constraintName="user_primary_key_constraint" />
+                       constraintName="users_primary_key_constraint" />
     </changeSet>
 </databaseChangeLog>
