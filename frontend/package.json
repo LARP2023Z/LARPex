@@ -12,6 +12,7 @@
     "@react95/clippy": "1.0.13",
     "@react95/icons": "2.0.8",
     "@swc/helpers": "~0.5.2",
+    "dayjs": "^1.11.10",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-draggable": "^4.4.6",
