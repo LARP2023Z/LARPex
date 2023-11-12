@@ -27,7 +27,7 @@ const iPay = new PaymentProxyMock();
 
 const ucPFE = new UCPayForEvent(pPW, iPay, iEv);
 
-export default function VPayWnd() {
+export default function VPayResultWnd() {
   const { handleSubmit, control } = useForm<PaymentFormData>(formSettings);
 
   const emptyData: VMPayWndData = new VMPayWndData();

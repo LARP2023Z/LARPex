@@ -1,3 +1,4 @@
+import { create } from 'zustand';
 import { PaymentMethod } from '../types/PaymentMethod';
 
 export class VMPayWndData {
@@ -5,7 +6,17 @@ export class VMPayWndData {
   price = 0;
 }
 
-export enum PayActionId {}
+export enum PayActionId {
+  UPDATE_METHODS,
+  PAY,
+}
+
+type PayActionData = PaymentMethod[];
+
+export type PayAction = {
+  type: PayActionId;
+  data?: PayActionData;
+};
 
 export type PaymentFormData = {
   amount: number;
@@ -17,3 +28,13 @@ export type Currency = {
   name: string;
   code: string;
 };
+
+export enum PayWindowId {
+  PAYMENT_RESULT,
+  PAYMENT_FORM,
+}
+
+const usePaymentsPageStore = create((set) => ({
+  visibleWindows: [PayWindowId.PAYMENT_FORM],
+  setVisibleWindows: (visibleWindows: PayWindowId[]) => set({ visibleWindows }),
+}));
