@@ -1,13 +1,15 @@
 import { Dispatch } from 'react';
-import { PayActionId, VMPayWndData } from '../viewModels/VMPayWnd';
+import { PayAction, PayActionId, VMPayWndData } from '../viewModels/VMPayWnd';
 import { pipe } from 'fp-ts/function';
 import { fromNullable, fold } from 'fp-ts/Option';
 import { Either, left, right } from 'fp-ts/Either';
+import { PaymentMethod } from '../types/PaymentMethod';
 export class PPayWnd {
+  // Pattern z wykładu - obfuskacja poprzez kilkuliterowe nazwy zmiennych
   vmpw?: VMPayWndData;
-  uv?: Dispatch<PayActionId>;
+  uv?: Dispatch<PayAction>;
 
-  injectDataHandle(vmpw: VMPayWndData, uv: Dispatch<PayActionId>) {
+  injectDataHandle(vmpw: VMPayWndData, uv: Dispatch<PayAction>) {
     this.vmpw = vmpw;
     this.uv = uv;
   }
@@ -23,5 +25,9 @@ export class PPayWnd {
         }
       )
     );
+  }
+
+  updatePaymentMethods(methods: PaymentMethod[]) {
+    this.uv?.({ type: PayActionId.UPDATE_METHODS, data: methods });
   }
 }

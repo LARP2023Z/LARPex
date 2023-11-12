@@ -24,12 +24,9 @@ export class UCPayForEvent {
     return this.iEv.getEventDetails(eventId);
   }
 
-  getPaymentMethods() {
+  async getPaymentMethods() {
     // Mock
-    return Promise.resolve([
-      { name: 'Przelew', icon: 'Przelew' },
-      { name: 'Karta', icon: 'Karta' },
-      { name: 'PayPal', icon: 'PayPal' },
-    ]);
+    const methods = await this.iP.getPaymentMethods();
+    this.ppw.updatePaymentMethods(methods);
   }
 }
