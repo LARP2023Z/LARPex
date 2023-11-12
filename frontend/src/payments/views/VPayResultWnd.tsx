@@ -1,25 +1,27 @@
 import {
-  Button,
-  GroupBox,
-  Select,
-  TextInput,
-  Window,
-  WindowContent,
-  WindowHeader,
+    Button,
+    GroupBox,
+    Select,
+    TextInput,
+    Window,
+    WindowContent,
+    WindowHeader,
 } from 'react95';
-import { useForm, Controller } from 'react-hook-form';
-import { Space } from 'src/common/Space';
+import {useForm, Controller} from 'react-hook-form';
+import {Space} from 'src/common/Space';
 import Draggable from 'react-draggable';
-import { PaymentMethod } from '../types/PaymentMethod';
-import { PaymentFormData, VMPayWndData } from '../viewModels/VMPayWnd';
-import { CPayWnd, updatePayView } from '../controllers/CPayWnd';
-import { UCPayForEvent } from '../useCases/UCPayForEvent';
-import { PPayWnd } from '../presenters/PPayWnd';
-import { EventProxyMock } from '../services/Events';
-import { PaymentProxyMock } from '../services/Payments';
-import { formSettings } from './aux/variables';
-import { useEffect, useMemo, useReducer } from 'react';
-import { mapPaymentMethodToSelectOption } from './aux/utils';
+import {PaymentMethod} from '../types/PaymentMethod';
+import {PaymentFormData, VMPayWndData} from '../viewModels/VMPayWnd';
+import {CPayWnd, updatePayView} from '../controllers/CPayWnd';
+import {UCPayForEvent} from '../useCases/UCPayForEvent';
+import {PPayWnd} from '../presenters/PPayWnd';
+import {EventProxyMock} from '../services/Events';
+import {PaymentProxyMock} from '../services/Payments';
+import {formSettings} from './aux/variables';
+import {useEffect, useMemo, useReducer} from 'react';
+import {mapPaymentMethodToSelectOption} from './aux/utils';
+import {useParams} from "react-router";
+import {useSearchParams} from "react-router-dom";
 
 const pPW = new PPayWnd();
 const iEv = new EventProxyMock();
@@ -27,65 +29,51 @@ const iPay = new PaymentProxyMock();
 
 const ucPFE = new UCPayForEvent(pPW, iPay, iEv);
 
+type Params = {
+    success: string;
+};
 export default function VPayResultWnd() {
-  const { handleSubmit, control } = useForm<PaymentFormData>(formSettings);
+    const [searchParams, setSearchParams] = useSearchParams();
 
-  const emptyData: VMPayWndData = new VMPayWndData();
-  const [pwData, pwUpdateView] = useReducer(updatePayView, emptyData);
-
-  pPW.injectDataHandle(pwData, pwUpdateView);
-
-  const availablePaymentMethods: PaymentMethod[] =
-    pwData.availablePaymentMethods;
-
-  const { onPaymentFormSubmit, onPageLoadEvent } = useMemo(
-    () => CPayWnd(ucPFE),
-    []
-  );
-
-  useEffect(() => {
-    onPageLoadEvent();
-  }, [onPageLoadEvent]);
-
-  const selectOptions = availablePaymentMethods.map(
-    mapPaymentMethodToSelectOption
-  );
-
-  return (
-    <Draggable>
-      <Window>
-        <WindowHeader>Płatność</WindowHeader>
-        <WindowContent>
-          <form onSubmit={handleSubmit(onPaymentFormSubmit)}>
-            <Space gap={8}>
-              <GroupBox label="Kwota do zapłaty">
-                <Controller
-                  name="amount"
-                  control={control}
-                  render={({ field }) => <TextInput {...field} disabled />}
-                />
-              </GroupBox>
-
-              <GroupBox label="Metoda płatności">
-                <Controller
-                  name="paymentMethod"
-                  control={control}
-                  render={({ field: { onChange, ...field } }) => (
-                    <Select
-                      {...field}
-                      onChange={(option) => onChange(option.value)}
-                      options={selectOptions}
-                    />
-                  )}
-                />
-              </GroupBox>
-              <Button fullWidth type="submit">
-                Płatność
-              </Button>
-            </Space>
-          </form>
-        </WindowContent>
-      </Window>
-    </Draggable>
-  );
+    switch (searchParams.get("success")) {
+        case "true":
+            return (
+                <Draggable>
+                    <Window>
+                        <WindowHeader>Płatność</WindowHeader>
+                        <WindowContent>
+                            <Space gap={8}>
+                                <p>Płatność zakończona sukcesem</p>
+                            </Space>
+                        </WindowContent>
+                    </Window>
+                </Draggable>
+            );
+        case "false":
+            return (
+                <Draggable>
+                    <Window>
+                        <WindowHeader>Płatność</WindowHeader>
+                        <WindowContent>
+                            <Space gap={8}>
+                                <p>Płatność zakończona niepowodzeniem</p>
+                            </Space>
+                        </WindowContent>
+                    </Window>
+                </Draggable>
+            );
+        default:
+            return (
+                <Draggable>
+                    <Window>
+                        <WindowHeader>Płatność</WindowHeader>
+                        <WindowContent>
+                            <Space gap={8}>
+                                <p>Wystąpił błąd</p>
+                            </Space>
+                        </WindowContent>
+                    </Window>
+                </Draggable>
+            );
+    }
 }
