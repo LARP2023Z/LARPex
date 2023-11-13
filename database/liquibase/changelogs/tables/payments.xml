@@ -9,7 +9,7 @@
       http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
    <changeSet author="stankowd" id="1">
       <createTable tableName="payment" schemaName="payments">
-        <column name="id" autoIncrement="true" type="INTEGER">
+        <column name="id" type="UUID">
             <constraints nullable="false"/>
         </column>
         <column name="method" type="VARCHAR(255)"/>

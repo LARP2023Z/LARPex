@@ -9,7 +9,7 @@
       http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
    <changeSet author="stankowd" id="2">
       <createTable tableName="event" schemaName="events">
-        <column name="id" autoIncrement="true" type="INTEGER">
+        <column name="id" type="UUID">
             <constraints nullable="false"/>
         </column>
         <column name="status" type="VARCHAR(255)">
