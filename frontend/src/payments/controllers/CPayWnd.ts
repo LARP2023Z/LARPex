@@ -25,17 +25,26 @@ export function updatePayView(
 
 export function CPayWnd(
   ucPFE: UCPayForEvent,
-  utils: { changeView: (viewId: string) => void }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  utils: { changeView: (viewId: string) => void; clippy: any }
 ) {
   function onPaymentFormSubmit(values: PaymentFormData) {
     ucPFE.payForEvent('eventId', 'userId').then(
       () => {
         generateHappyUrl().subscribe((url) => {
+          utils.clippy.play('Congratulate');
+          utils.clippy.speak(
+            'Płatność zakończona sukcesem. Gratulujemy i życzymy miłego dnia!'
+          );
           utils.changeView(url);
         });
       },
       () => {
         generateSadUrl().subscribe((url) => {
+          utils.clippy.play('Alert');
+          utils.clippy.speak(
+            'Płatność zakończona niepowodzeniem. Prosimy spróbować ponownie.'
+          );
           utils.changeView(url);
         });
       }
