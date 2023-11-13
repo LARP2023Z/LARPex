@@ -1,0 +1,53 @@
+openapi: 3.0.0
+info:
+  title: Larpex
+  description: Larpex API
+  version: 0.0.1
+servers:
+  - url: /
+paths:
+  /users/{id}:
+    get:
+      tags:
+        - users
+      summary: Get user details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "The id of a user to return"
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "201":
+          description: Region
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserDetailsResponse"
+        "400":
+          description: Request params invalid
+        "404":
+          description: User does not exist
+
+components:
+  schemas:
+    UserDetailsResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        alias:
+          type: string
+        name:
+          type: string
+        surname:
+          type: string
+        birthDate:
+          type: string
+          format: date-time
+        email:
+          type: string
+          format: email

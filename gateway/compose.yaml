@@ -1,0 +1,6 @@
+services:
+  gateway:
+    image: larpex/gateway:latest
+    ports:
+      - "8080:8080"
+    build: .
