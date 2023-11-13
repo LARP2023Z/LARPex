@@ -60,8 +60,8 @@ export default function VPayWnd() {
         <WindowHeader>Płatność</WindowHeader>
         <WindowContent>
           <form
-            onSubmit={handleSubmit((b /* jak balues */) =>
-              onPaymentFormSubmit(b)
+            onSubmit={handleSubmit((v) =>
+              onPaymentFormSubmit(v)
             )}
           >
             <Space gap={8}>

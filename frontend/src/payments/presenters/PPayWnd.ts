@@ -5,7 +5,6 @@ import { fromNullable, fold } from 'fp-ts/Option';
 import { Either, left, right } from 'fp-ts/Either';
 import { PaymentMethod } from '../types/PaymentMethod';
 export class PPayWnd {
-  // Pattern z wykładu - obfuskacja poprzez kilkuliterowe nazwy zmiennych
   vmpw?: VMPayWndData;
   uv?: Dispatch<PayAction>;
 
