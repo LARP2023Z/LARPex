@@ -1,4 +1,3 @@
-import { create } from 'zustand';
 import { PaymentMethod } from '../types/PaymentMethod';
 
 export class VMPayWndData {
@@ -33,8 +32,3 @@ export enum PayWindowId {
   PAYMENT_RESULT,
   PAYMENT_FORM,
 }
-
-const usePaymentsPageStore = create((set) => ({
-  visibleWindows: [PayWindowId.PAYMENT_FORM],
-  setVisibleWindows: (visibleWindows: PayWindowId[]) => set({ visibleWindows }),
-}));
