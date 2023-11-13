@@ -21,6 +21,7 @@ import { formSettings } from './aux/variables';
 import { useEffect, useMemo, useReducer } from 'react';
 import { mapPaymentMethodToSelectOption } from './aux/utils';
 import { useNavigate } from 'react-router-dom';
+import { useClippy } from '@react95/clippy';
 
 const pPW = new PPayWnd();
 const iEv = new EventProxyMock();
@@ -40,10 +41,11 @@ export default function VPayWnd() {
     pwData.availablePaymentMethods;
 
   const navigate = useNavigate();
+  const { clippy } = useClippy();
 
   const { onPaymentFormSubmit, onPageLoadEvent } = useMemo(
-    () => CPayWnd(ucPFE, { changeView: navigate }),
-    [navigate]
+    () => CPayWnd(ucPFE, { changeView: navigate, clippy }),
+    [clippy, navigate]
   );
 
   useEffect(() => {
@@ -59,11 +61,7 @@ export default function VPayWnd() {
       <Window>
         <WindowHeader>Płatność</WindowHeader>
         <WindowContent>
-          <form
-            onSubmit={handleSubmit((v) =>
-              onPaymentFormSubmit(v)
-            )}
-          >
+          <form onSubmit={handleSubmit((v) => onPaymentFormSubmit(v))}>
             <Space gap={8}>
               <GroupBox label="Kwota do zapłaty">
                 <Controller
