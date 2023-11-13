@@ -13,8 +13,7 @@ This service contains users and authentication/authorization logic.
   - [prettier](https://prettier.io/docs/en/install.html)
   - [prettier-java](https://github.com/jhipster/prettier-java)
     - This command does it all for you: `npm install -g prettier prettier-plugin-java`
-  // eclipse temurin
-- JDK 17 - Any
+- JDK 17 - Any will suffice
 
 ### Run
 
