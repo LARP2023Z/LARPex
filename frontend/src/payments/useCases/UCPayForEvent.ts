@@ -24,7 +24,7 @@ export class UCPayForEvent {
     return this.iEv.getEventDetails(eventId);
   }
 
-  async getPaymentMethods() {
+  async showPaymentMethods() {
     // Mock
     const methods = await this.iP.getPaymentMethods();
     this.ppw.updatePaymentMethods(methods);
