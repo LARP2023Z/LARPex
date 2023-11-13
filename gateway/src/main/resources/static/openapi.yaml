@@ -30,6 +30,56 @@ paths:
           description: Request params invalid
         "404":
           description: User does not exist
+  /events:
+    get:
+      tags:
+        - events
+      summary: Get Events List
+      description: Retrieve a list of events.
+      responses:
+        '200':
+          description: Successful response
+  /events/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: ID of the event
+        schema:
+          type: string
+          format: uuid
+    get:
+      tags:
+        - events
+      summary: Get Event Details
+      description: Retrieve details of a specific event.
+      responses:
+        '200':
+          description: Successful response
+  /events/{uid}/{eid}:
+    parameters:
+      - name: uid
+        in: path
+        required: true
+        description: User ID
+        schema:
+          type: string
+          format: uuid
+      - name: eid
+        in: path
+        required: true
+        description: Event ID
+        schema:
+          type: string
+          format: uuid
+    get:
+      tags:
+        - events
+      summary: Sign Up for Event
+      description: Sign up a user for a specific event.
+      responses:
+        '200':
+          description: Successful response
 
 components:
   schemas:
