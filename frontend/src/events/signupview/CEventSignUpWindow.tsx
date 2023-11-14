@@ -1,20 +1,23 @@
-import {ActionId} from "../types/ActionId";
-import {USignUpForEvent} from "../usecases/USignUpForEvent";
-import {SignUpState} from "../types/SignUpState";
-import {EventSignUpDto} from "../types/EventSignUpDto";
+import { ActionId } from '../types/ActionId';
+import { USignUpForEvent } from '../usecases/USignUpForEvent';
+import { SignUpState } from '../types/SignUpState';
+import { EventSignUpDto } from '../types/EventSignUpDto';
 
-export const updateUSView = (state: SignUpState, action: ActionId): SignUpState => {
-    return {...state};
-}
+export const updateUSView = (
+  state: SignUpState,
+  _action: ActionId
+): SignUpState => {
+  return { ...state };
+};
 
 export const CSignUpWindow = (show: USignUpForEvent) => {
-    function onSignUpEvent(data: EventSignUpDto) {
-        show.signUp(data)
-    }
+  function onSignUpEvent(data: EventSignUpDto) {
+    show.signUp(data);
+  }
 
-    function closeWindow() {
-        show.closeWindow()
-    }
+  function closeWindow() {
+    show.closeWindow();
+  }
 
-    return [onSignUpEvent, closeWindow];
-}
+  return [onSignUpEvent, closeWindow];
+};
