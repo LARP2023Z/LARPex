@@ -4,13 +4,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.util.Date;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users", schema = "users")
+@Table(name = "user", schema = "users")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,10 +19,13 @@ import lombok.Setter;
 class UserEntity {
 
   @Id
-  private String id; // TODO: UUID after DB changes fixes
+  private UUID id;
 
   private String alias;
   private String name;
   private String surname;
-  private Date birthDate; // TODO: should probably be LocalDate
+  private Date birthDate;
+
+  private String passwordHash;
+  private String email;
 }

@@ -8,7 +8,7 @@ import pl.larp.larpex.usi.user.domain.model.UserDetailResponse;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+class UserService implements IUsersFetch {
 
   private final IUsers users;
 

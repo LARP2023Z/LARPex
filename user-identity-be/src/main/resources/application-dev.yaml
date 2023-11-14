@@ -1,5 +1,5 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/docker # TODO: Make sure it's fine after DB changes
+    url: jdbc:postgresql://localhost:5432/docker
     username: root
     password: password
