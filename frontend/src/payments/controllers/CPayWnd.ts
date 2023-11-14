@@ -28,7 +28,7 @@ export function CPayWnd(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   utils: { changeView: (viewId: string) => void; clippy: any }
 ) {
-  function onPaymentFormSubmit(values: PaymentFormData) {
+  function onPaymentFormSubmit(_values: PaymentFormData) {
     ucPFE.payForEvent('eventId', 'userId').then(
       () => {
         generateHappyUrl().subscribe((url) => {
