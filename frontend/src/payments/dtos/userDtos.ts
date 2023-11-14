@@ -1,4 +1,4 @@
-import { Dayjs } from "dayjs";
+import { Dayjs } from 'dayjs';
 
 export class UserDto {
   id: string;
@@ -7,8 +7,13 @@ export class UserDto {
   surname: string;
   birthdate: Dayjs;
 
-
-  constructor(id: string, alias: string, name: string, surname: string, birthdate: Dayjs) {
+  constructor(
+    id: string,
+    alias: string,
+    name: string,
+    surname: string,
+    birthdate: Dayjs
+  ) {
     this.id = id;
     this.alias = alias;
     this.name = name;
@@ -16,4 +21,3 @@ export class UserDto {
     this.birthdate = birthdate;
   }
 }
-
