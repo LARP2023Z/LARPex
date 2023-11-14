@@ -1,0 +1,26 @@
+services:
+  db:
+    container_name: db
+    image: postgres:latest
+    healthcheck:
+      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: docker
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/
+    ports:
+      - 5432:5432
+  liquibase_db:
+    container_name: db_updater
+    image: liquibase/liquibase:latest
+    volumes:
+      - ./liquibase:/liquibase/changelog
+    command: liquibase --url="jdbc:postgresql://db:5432/docker" --changeLogFile=./changelog/changelog.xml --username=root --password=password update
+    depends_on:
+      - db
