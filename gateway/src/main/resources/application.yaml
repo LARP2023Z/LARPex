@@ -9,4 +9,4 @@ spring:
         - id: users
           uri: http://users-identity-service:8080
           predicates:
-            - Path=/users
+            - Path=/users/**
