@@ -1,0 +1,49 @@
+openapi: 3.0.1
+info:
+  title: UserService
+  version: v0
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+paths:
+  /users/{id}:
+    get:
+      tags:
+        - UserService
+      summary: Get user details
+      operationId: getUserDetails
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "404":
+          description: User not found
+        "200":
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserDetailResponse"
+components:
+  schemas:
+    UserDetailResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        alias:
+          type: string
+        name:
+          type: string
+        surname:
+          type: string
+        birthDate:
+          type: string
+          format: date
+        email:
+          type: string

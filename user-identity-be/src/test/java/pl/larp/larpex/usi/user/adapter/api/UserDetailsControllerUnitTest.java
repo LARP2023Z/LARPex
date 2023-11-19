@@ -4,7 +4,7 @@ import static io.restassured.module.mockmvc.RestAssuredMockMvc.*;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.Mockito.when;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.larp.larpex.usi.user.domain.model.UserDetailResponse;
-import pl.larp.larpex.usi.user.domain.port.UserService;
+import pl.larp.larpex.usi.user.domain.port.IUsersFetch;
 
 @ExtendWith(MockitoExtension.class)
 class UserDetailsControllerUnitTest {
@@ -22,7 +22,7 @@ class UserDetailsControllerUnitTest {
   private static final String USERS_PATH = "/users";
 
   @Mock
-  private UserService userService;
+  private IUsersFetch iUsersFetch;
 
   @InjectMocks
   private UserDetailsController userDetailsController;
@@ -40,12 +40,12 @@ class UserDetailsControllerUnitTest {
       "alias-value",
       "name-value",
       "surname-value",
-      LocalDateTime.MIN,
+      LocalDate.MIN,
       "email-value"
     );
 
     // and
-    when(userService.fetchUserDetails(user.id())).thenReturn(Optional.of(user));
+    when(iUsersFetch.fetchUserDetails(user.id())).thenReturn(Optional.of(user));
 
     given()
       .when()
@@ -62,7 +62,7 @@ class UserDetailsControllerUnitTest {
     final var userId = UUID.randomUUID();
 
     // and
-    when(userService.fetchUserDetails(userId)).thenReturn(Optional.empty());
+    when(iUsersFetch.fetchUserDetails(userId)).thenReturn(Optional.empty());
 
     given()
       .when()

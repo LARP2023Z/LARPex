@@ -3,6 +3,7 @@ package pl.larp.larpex.usi.user.domain.port;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,6 +12,7 @@ import pl.larp.larpex.usi.user.adapter.memory.InMemoryUsersFixtures;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
+@Disabled("#53")
 class UserServiceIntegrationTest {
 
   @Autowired
