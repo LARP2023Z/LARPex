@@ -1,6 +1,5 @@
 services:
   db:
-    container_name: db
     image: postgres:latest
     healthcheck:
       test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
@@ -16,8 +15,7 @@ services:
       - ./db:/docker-entrypoint-initdb.d/
     ports:
       - 5432:5432
-  liquibase_db:
-    container_name: db_updater
+  liquibase:
     image: liquibase/liquibase:latest
     volumes:
       - ./liquibase:/liquibase/changelog
