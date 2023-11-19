@@ -10,7 +10,7 @@ import pl.larp.larpex.usi.user.domain.model.User;
 import pl.larp.larpex.usi.user.domain.port.IUsers;
 
 @Component
-@Profile("test") // TODO move to tests
+@Profile("test")
 class InMemoryUsersRepository implements IUsers {
 
   private final Map<UUID, User> users = new HashMap<>();

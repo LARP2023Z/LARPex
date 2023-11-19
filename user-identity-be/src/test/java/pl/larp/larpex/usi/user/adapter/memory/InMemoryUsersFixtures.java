@@ -9,6 +9,7 @@ import pl.larp.larpex.usi.user.domain.model.UserCredential;
 
 @RequiredArgsConstructor
 @Component
+// TODO: #53 - remove
 public class InMemoryUsersFixtures {
 
   private final InMemoryUsersRepository inMemoryUsersRepository;
