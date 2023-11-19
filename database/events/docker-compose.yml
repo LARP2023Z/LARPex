@@ -1,0 +1,24 @@
+services:
+  eventsdb:
+    image: postgres:latest
+    healthcheck:
+      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: events
+    volumes:
+      - ./db:/events-entrypoint-initdb.d/
+    ports:
+      - 5432:5432
+  eventsliquibase:
+    image: liquibase/liquibase:latest
+    volumes:
+      - ./liquibase:/liquibase/changelog
+    command: liquibase --url="jdbc:postgresql://eventsdb:5432/events" --changeLogFile=changelog/changelog.xml --username=root --password=password update
+    depends_on:
+      - eventsdb

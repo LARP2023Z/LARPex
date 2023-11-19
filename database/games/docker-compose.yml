@@ -1,0 +1,24 @@
+services:
+  gamesdb:
+    image: postgres:latest
+    healthcheck:
+      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: games
+    volumes:
+      - ./db:/games-entrypoint-initdb.d/
+    ports:
+      - 5433:5432
+  gamesliquibase:
+    image: liquibase/liquibase:latest
+    volumes:
+      - ./liquibase:/liquibase/changelog
+    command: liquibase --url="jdbc:postgresql://gamesdb:5432/games" --changeLogFile=changelog/changelog.xml --username=root --password=password update
+    depends_on:
+      - gamesdb

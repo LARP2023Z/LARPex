@@ -1,24 +1,67 @@
 services:
-  db:
-    image: postgres:latest
-    healthcheck:
-      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
-      timeout: 45s
-      interval: 10s
-      retries: 10
-    restart: always
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: docker
+ 
+  eventsdb:
+    extends: 
+      file: ./events/docker-compose.yml
+      service: eventsdb
     volumes:
-      - ./db:/docker-entrypoint-initdb.d/
-    ports:
-      - 5432:5432
-  liquibase:
-    image: liquibase/liquibase:latest
+      - ./database/eventsdb:/eventsdb-entrypoint-initdb.d/
+
+  
+  eventsliquibase:
+    extends:
+      file: ./events/docker-compose.yml
+      service: eventsliquibase
     volumes:
-      - ./liquibase:/liquibase/changelog
-    command: liquibase --url="jdbc:postgresql://db:5432/docker" --changeLogFile=./changelog/changelog.xml --username=root --password=password update
+      - ./events/liquibase:/liquibase/changelog
     depends_on:
-      - db
+      - eventsdb
+  
+  usersdb:
+    extends: 
+      file: ./users/docker-compose.yml
+      service: usersdb
+    volumes:
+      - ./database/usersdb:/users-entrypoint-initdb.d/
+  
+  usersliquibase:
+    extends:
+      file: ./users/docker-compose.yml
+      service: usersliquibase
+    volumes:
+      - ./users/liquibase:/liquibase/changelog
+    depends_on:
+      - usersdb
+
+  paymentsdb:
+    extends: 
+      file: ./payments/docker-compose.yml
+      service: paymentsdb
+    volumes:
+      - ./database/paymentsdb:/payments-entrypoint-initdb.d/
+  
+  paymentsliquibase:
+    extends:
+      file: ./payments/docker-compose.yml
+      service: paymentsliquibase
+    volumes:
+      - ./payments/liquibase:/liquibase/changelog
+    depends_on:
+      - paymentsdb
+
+  gamesdb:
+    extends: 
+      file: ./games/docker-compose.yml
+      service: gamesdb
+    volumes:
+      - ./database/gamesdb:/games-entrypoint-initdb.d/
+  
+  gamesliquibase:
+    extends:
+      file: ./games/docker-compose.yml
+      service: gamesliquibase
+    volumes:
+      - ./games/liquibase:/liquibase/changelog
+    depends_on:
+      - gamesdb      
+   
