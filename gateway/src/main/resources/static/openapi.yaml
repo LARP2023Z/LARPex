@@ -1,0 +1,100 @@
+openapi: 3.0.1
+info:
+  title: Larpex
+  description: Larpex API
+  version: 0.0.1
+servers:
+  - url: /
+paths:
+  /users/{id}:
+    get:
+      tags:
+        - UserService
+      summary: Get user details
+      operationId: getUserDetails
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "404":
+          description: User not found
+        "200":
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserDetailResponse"
+  /events:
+    get:
+      tags:
+        - events
+      summary: Get Events List
+      description: Retrieve a list of events.
+      responses:
+        '200':
+          description: Successful response
+  /events/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: ID of the event
+        schema:
+          type: string
+          format: uuid
+    get:
+      tags:
+        - events
+      summary: Get Event Details
+      description: Retrieve details of a specific event.
+      responses:
+        '200':
+          description: Successful response
+  /events/{uid}/{eid}:
+    parameters:
+      - name: uid
+        in: path
+        required: true
+        description: User ID
+        schema:
+          type: string
+          format: uuid
+      - name: eid
+        in: path
+        required: true
+        description: Event ID
+        schema:
+          type: string
+          format: uuid
+    get:
+      tags:
+        - events
+      summary: Sign Up for Event
+      description: Sign up a user for a specific event.
+      responses:
+        '200':
+          description: Successful response
+
+components:
+  schemas:
+    UserDetailResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        alias:
+          type: string
+        name:
+          type: string
+        surname:
+          type: string
+        birthDate:
+          type: string
+          format: date
+        email:
+          type: string
