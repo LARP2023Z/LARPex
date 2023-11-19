@@ -1,6 +1,6 @@
 package pl.larp.larpex.usi.user.adapter.memory;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -9,6 +9,7 @@ import pl.larp.larpex.usi.user.domain.model.UserCredential;
 
 @RequiredArgsConstructor
 @Component
+// TODO: #53 - remove
 public class InMemoryUsersFixtures {
 
   private final InMemoryUsersRepository inMemoryUsersRepository;
@@ -20,7 +21,7 @@ public class InMemoryUsersFixtures {
       .name("Krzysztof")
       .surname("Chrupała")
       .alias("dr. Chruper")
-      .birthDate(LocalDateTime.MIN)
+      .birthDate(LocalDate.MIN)
       .credential(
         UserCredential
           .builder()
