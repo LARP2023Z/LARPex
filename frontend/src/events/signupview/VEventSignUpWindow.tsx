@@ -18,6 +18,7 @@ export const VEventSignUpWindow: FC<{
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [onSignUpEvent, closeWindow] = CSignUpWindow(uSU);
 
+  console.log(usData);
   return (
     <div>
       {usData.isWindowActive && (
