@@ -13,7 +13,6 @@ import pl.larp.larpex.usi.user.domain.port.IUsers;
 
 @Service
 @RequiredArgsConstructor
-@Profile("!test") // TODO#53
 public class UsersAdapter implements IUsers {
 
   private final UserEntityRepository userEntityRepository;

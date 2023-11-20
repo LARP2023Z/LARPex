@@ -1,10 +1,4 @@
 services:
-  users-identity-service:
-    image: larpex/users-identity-service:latest
-    ports:
-      - "8082:8080"
-    build: .
-
   users-identity-service-db:
     image: postgres:latest
     healthcheck:

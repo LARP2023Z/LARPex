@@ -1,5 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://db:5432/docker
+    url: jdbc:postgresql://users-identity-service-db:5432/users
     username: root
     password: password
+  liquibase:
+    change-log: db/changelog/changelog-master.xml
+    contexts: "no-context" # This is just so that liquibase does not include every changeset

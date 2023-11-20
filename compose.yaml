@@ -1,5 +1,5 @@
 services:
-
+  
   # API Gateway
   gateway:
     extends:
@@ -13,28 +13,15 @@ services:
       service: users-identity-service
     build: ./user-identity-be/
     depends_on:
-      - db
+      - users-identity-service-db
 
   be-events-service:
     extends:
       file: ./be-events/docker-compose.yml
       service: be-events-service
     build: ./be-events/
-    depends_on:
-      - db
 
-  db:
-    extends:
-      file: ./database/docker-compose.yml
-      service: db
-    volumes:
-      - ./database/db:/docker-entrypoint-initdb.d/
-
-  liquibase:
-    extends:
-      file: ./database/docker-compose.yml
-      service: liquibase
-    volumes:
-      - ./database/liquibase:/liquibase/changelog
-    depends_on:
-      - db
+  users-identity-service-db:
+    extends: 
+      file: ./user-identity-be/compose.yaml
+      service: users-identity-service-db
