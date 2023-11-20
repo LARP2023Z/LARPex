@@ -1,4 +1,4 @@
 export interface LoginResponse {
-    success: boolean;
-    message?: string;
+  success: boolean;
+  message?: string;
 }
