@@ -17,6 +17,8 @@ export class UShowEventList {
         ).catch(err => {
             alert(err)
         });
+        const events = this.iEF.listsEvents();
+        this.pEL.handleShowPaginatedEvents(events)
     }
 
     onSelectEvent(eventId: string) {

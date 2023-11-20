@@ -24,8 +24,6 @@ export class EventRegistrationProxy implements IEventRegistration {
                 throw reason
             }
         )
-
-        return {status: RegistrationStatus.Success}
     }
 
 }

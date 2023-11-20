@@ -10,6 +10,7 @@ import {PSignUpWindow} from "./signupview/PSignUpWindow";
 import {VEventSignUpWindow} from "./signupview/VEventSignUpWindow";
 import {updateUSView} from "./signupview/CEventSignUpWindow";
 import {SignUpState} from "./types/SignUpState";
+
 import {AEvents} from "./interfaces/AEvents";
 
 const pEL: PEventsListWindow = new PEventsListWindow();

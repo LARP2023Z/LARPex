@@ -5,7 +5,6 @@ export interface IEventFetch {
     listsEvents(): Promise<Array<EventsListDto>>
 }
 
-
 export class EventsProxy implements IEventFetch {
 
     aEvents: AEvents

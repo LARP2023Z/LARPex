@@ -6,7 +6,10 @@ import original from 'react95/dist/themes/original';
 import {ClippyProvider} from '@react95/clippy';
 import {PaymentsPage} from 'src/payments/PaymentsPage';
 import {InnerApp} from "../events/InnerApp";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 765ac59 (feat-fe: Add implementation for show events list and sign up for event)
 
 // zmiencie sobie routy jak będzie trzeba B)
 const router = createBrowserRouter([
