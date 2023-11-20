@@ -1,0 +1,7 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:postgresql://db:5432/docker
+    username: root
+    password: password
