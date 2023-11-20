@@ -7,6 +7,7 @@ import { ClippyProvider } from '@react95/clippy';
 import VPayWnd from 'src/payments/views/VPayWnd';
 import { InnerApp } from 'src/events/InnerApp';
 import VPayResultWnd from '../payments/views/VPayResultWnd';
+import { LoginPresenter } from '../login/LoginPresenter';
 
 // zmiencie sobie routy jak będzie trzeba B)
 const router = createBrowserRouter([
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <Placeholder title="login" />,
+    element: <LoginPresenter />,
   },
   {
     path: '/events',
