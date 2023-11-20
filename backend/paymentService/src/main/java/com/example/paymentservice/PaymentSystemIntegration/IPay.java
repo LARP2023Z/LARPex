@@ -1,8 +1,12 @@
 package com.example.paymentservice.PaymentSystemIntegration;
 
-import com.example.paymentservice.DTO.PaymentSystemResponse;
-import com.example.paymentservice.DTO.PaymentsDetailsRequest;
+import com.example.paymentservice.DTO.ConfirmPaymentCommand;
+import com.example.paymentservice.DTO.ConfirmResponse;
+import com.example.paymentservice.DTO.InitializePaymentCommand;
+import com.example.paymentservice.DTO.InitializePaymentResponse;
+
 
 public interface IPay {
-    PaymentSystemResponse doPay(PaymentsDetailsRequest request);
+    InitializePaymentResponse initializePayment(InitializePaymentCommand command);
+    ConfirmResponse confirmPayment(ConfirmPaymentCommand command);
 }

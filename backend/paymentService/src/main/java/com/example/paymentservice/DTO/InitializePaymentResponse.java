@@ -4,6 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter @AllArgsConstructor
-public class PaymentSystemResponse {
-    int response;
+public class InitializePaymentResponse {
+    String redirectUri;
 }

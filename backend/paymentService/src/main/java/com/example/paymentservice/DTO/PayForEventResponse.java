@@ -8,9 +8,9 @@ import java.util.Date;
 import java.util.UUID;
 
 @Setter @Getter @AllArgsConstructor
-public class PaymentSummary {
+public class PayForEventResponse {
     private double amount;
     private Date paymentDate;
     private String eventName;
-    private UUID paymentId;
+    private String externalPaymentId;
 }

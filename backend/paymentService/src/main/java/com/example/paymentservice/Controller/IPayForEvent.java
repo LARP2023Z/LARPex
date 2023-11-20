@@ -1,9 +1,9 @@
 package com.example.paymentservice.Controller;
 
 import com.example.paymentservice.DTO.PaymentIdentity;
-import com.example.paymentservice.DTO.PaymentSummary;
+import com.example.paymentservice.DTO.PayForEventResponse;
 
 public interface IPayForEvent {
-    PaymentSummary payForEvent(PaymentIdentity identity);
+    PayForEventResponse payForEvent(PaymentIdentity identity);
 
 }

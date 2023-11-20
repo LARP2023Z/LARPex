@@ -7,10 +7,9 @@ import lombok.Setter;
 import java.util.Date;
 import java.util.UUID;
 @Getter @Setter @AllArgsConstructor
-public class FiscalSystemPaymentSummary {
+public class RegisterPaymentCommand {
     double amount;
     private Date paymentDate;
-    private UUID eventId;
-
-    private String payerName;
+    private String eventName;
+    private UUID PaymentId;
 }
