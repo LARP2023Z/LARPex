@@ -3,34 +3,29 @@ package pl.larp.larpex.usi.user.domain.port;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import pl.larp.larpex.usi.user.adapter.memory.InMemoryUsersFixtures;
+import pl.larp.larpex.usi.test.AbstractIntegrationTest;
+import pl.larp.larpex.usi.user.adapter.db.UsersFixtures;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
-@Disabled("#53")
-class UserServiceIntegrationTest {
+class UserServiceIntegrationTest extends AbstractIntegrationTest {
 
   @Autowired
   private UserService userService;
 
   @Autowired
-  private InMemoryUsersFixtures inMemoryUsersFixtures;
+  private UsersFixtures usersFixtures;
 
   @BeforeEach
   void cleanUp() {
-    inMemoryUsersFixtures.removeAllUsers();
+    usersFixtures.removeAllUsers();
   }
 
   @Test
   void shouldFetchUser_whenUserExists() {
     // given that user exists
-    final var user = inMemoryUsersFixtures.generateSampleUser();
-    inMemoryUsersFixtures.saveUser(user);
+    final var user = usersFixtures.generateSampleUser();
+    usersFixtures.saveUser(user);
 
     // when
     final var userDetails = userService.fetchUserDetails(user.getId());

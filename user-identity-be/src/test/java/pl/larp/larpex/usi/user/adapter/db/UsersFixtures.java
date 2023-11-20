@@ -1,4 +1,4 @@
-package pl.larp.larpex.usi.user.adapter.memory;
+package pl.larp.larpex.usi.user.adapter.db;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -9,10 +9,9 @@ import pl.larp.larpex.usi.user.domain.model.UserCredential;
 
 @RequiredArgsConstructor
 @Component
-// TODO: #53 - remove
-public class InMemoryUsersFixtures {
+public class UsersFixtures {
 
-  private final InMemoryUsersRepository inMemoryUsersRepository;
+  private final UserEntityRepository userEntityRepository;
 
   public User generateSampleUser() {
     return User
@@ -21,7 +20,7 @@ public class InMemoryUsersFixtures {
       .name("Krzysztof")
       .surname("Chrupała")
       .alias("dr. Chruper")
-      .birthDate(LocalDate.MIN)
+      .birthDate(LocalDate.of(2000, 1, 1))
       .credential(
         UserCredential
           .builder()
@@ -33,10 +32,18 @@ public class InMemoryUsersFixtures {
   }
 
   public void saveUser(User user) {
-    inMemoryUsersRepository.save(user);
+    var userEntity = new UserEntity();
+    userEntity.setId(user.getId());
+    userEntity.setName(user.getName());
+    userEntity.setSurname(user.getSurname());
+    userEntity.setAlias(user.getAlias());
+    userEntity.setBirthDate(java.sql.Date.valueOf(user.getBirthDate()));
+    userEntity.setEmail(user.getCredential().getEmail());
+    userEntity.setPasswordHash(user.getCredential().getPasswordHash());
+    userEntityRepository.save(userEntity);
   }
 
   public void removeAllUsers() {
-    inMemoryUsersRepository.removeAllUsers();
+    userEntityRepository.deleteAll();
   }
 }
