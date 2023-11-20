@@ -5,5 +5,18 @@ const { withReact } = require('@nx/react');
 module.exports = composePlugins(withNx(), withReact(), (config) => {
   // Update the webpack config as needed here.
   // e.g. `config.plugins.push(new MyPlugin())`
-  return config;
+  return {
+    ...config,
+    devServer: {
+      ...config.devServer,
+      proxy: {
+        '/api': {
+          target: 'http://localhost:4200',
+          router: () => 'http://localhost:8080',
+          logLevel: 'debug',
+          pathRewrite: { '^/api': '' },
+        },
+      },
+    },
+  };
 });

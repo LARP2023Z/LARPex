@@ -6,4 +6,5 @@ export class EventDetails {
   host = '';
   startDate?: Dayjs;
   stopDate?: Dayjs;
+  price = 0;
 }

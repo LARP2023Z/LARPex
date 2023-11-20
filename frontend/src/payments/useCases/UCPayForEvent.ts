@@ -1,27 +1,55 @@
 import { PPayWnd } from '../presenters/PPayWnd';
-import { EventDetails } from '../viewModels/VMEventWnd';
 import { IPayments } from '../services/IPayments';
 import { IEvents } from '../services/IEvents';
+import { IUsers } from '../services/IUsers';
+import { generateHappyUrl, generateSadUrl } from '../views/utils/utils';
 
 export class UCPayForEvent {
   ppw: PPayWnd;
   iP: IPayments;
   iEv: IEvents;
+  iU: IUsers;
 
-  constructor(ppw: PPayWnd, pay: IPayments, ev: IEvents) {
+  constructor(ppw: PPayWnd, pay: IPayments, ev: IEvents, us: IUsers) {
     this.ppw = ppw;
     this.iP = pay;
     this.iEv = ev;
+    this.iU = us;
   }
 
-  payForEvent(eventId: string, userId: string): Promise<void> {
+  payForEvent(
+    eventId: string,
+    userId: string, // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    utils: { changeView: (viewId: string) => void; clippy: any }
+  ) {
     // Mock
-    return this.iP.payForEvent(eventId, userId);
+
+    this.iP.payForEvent(eventId, userId).then(
+      () => {
+        generateHappyUrl().subscribe((url) => {
+          utils.clippy.play('Congratulate');
+          utils.clippy.speak(
+            'Płatność zakończona sukcesem. Gratulujemy i życzymy miłego dnia!'
+          );
+          utils.changeView(url);
+        });
+      },
+      () => {
+        generateSadUrl().subscribe((url) => {
+          utils.clippy.play('Alert');
+          utils.clippy.speak(
+            'Płatność zakończona niepowodzeniem. Prosimy spróbować ponownie.'
+          );
+          utils.changeView(url);
+        });
+      }
+    );
   }
 
-  getEventDetails(eventId: string): Promise<EventDetails> {
+  async getEventDetails(eventId: string) {
     // Mock
-    return this.iEv.getEventDetails(eventId);
+    const eventDetails = await this.iEv.getEventDetails(eventId);
+    this.ppw.setPrice(eventDetails.price);
   }
 
   async showPaymentMethods() {

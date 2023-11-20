@@ -5,7 +5,6 @@ import {
   PaymentFormData,
   VMPayWndData,
 } from '../viewModels/VMPayWnd';
-import { generateHappyUrl, generateSadUrl } from '../views/utils/utils';
 
 export function updatePayView(
   state: VMPayWndData,
@@ -29,26 +28,7 @@ export function CPayWnd(
   utils: { changeView: (viewId: string) => void; clippy: any }
 ) {
   function onPaymentFormSubmit(_values: PaymentFormData) {
-    ucPFE.payForEvent('eventId', 'userId').then(
-      () => {
-        generateHappyUrl().subscribe((url) => {
-          utils.clippy.play('Congratulate');
-          utils.clippy.speak(
-            'Płatność zakończona sukcesem. Gratulujemy i życzymy miłego dnia!'
-          );
-          utils.changeView(url);
-        });
-      },
-      () => {
-        generateSadUrl().subscribe((url) => {
-          utils.clippy.play('Alert');
-          utils.clippy.speak(
-            'Płatność zakończona niepowodzeniem. Prosimy spróbować ponownie.'
-          );
-          utils.changeView(url);
-        });
-      }
-    );
+    ucPFE.payForEvent('eventId', 'userId', utils);
   }
 
   function onPageLoadEvent() {

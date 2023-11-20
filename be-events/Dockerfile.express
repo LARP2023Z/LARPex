@@ -1,0 +1,13 @@
+FROM node:lts
+RUN apt-get update
+RUN apt-get install -y openssl
+WORKDIR /usr/src/app
+ENV PORT 8083
+COPY ["package.json", "package-lock.json", "./"]
+COPY .env ./.env
+COPY prisma ./prisma/
+RUN npm install
+COPY . .
+RUN npx prisma generate --schema ./prisma/schema.prisma
+EXPOSE 8083
+CMD ["npm", "run", "dev"]
