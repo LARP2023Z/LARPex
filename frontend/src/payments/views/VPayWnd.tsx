@@ -22,12 +22,15 @@ import { useEffect, useMemo, useReducer } from 'react';
 import { mapPaymentMethodToSelectOption } from './utils/utils';
 import { useNavigate } from 'react-router-dom';
 import { useClippy } from '@react95/clippy';
+import { UserProxyMock } from '../services/Users';
+import { currentUserId } from 'src/api/user';
 
 const pPW = new PPayWnd();
 const iEv = new EventProxyMock();
 const iPay = new PaymentProxyMock();
+const iUser = new UserProxyMock();
 
-const ucPFE = new UCPayForEvent(pPW, iPay, iEv);
+const ucPFE = new UCPayForEvent(pPW, iPay, iEv, iUser);
 
 export default function VPayWnd() {
   const { handleSubmit, control } = useForm<PaymentFormData>(formSettings);
@@ -49,6 +52,9 @@ export default function VPayWnd() {
   );
 
   useEffect(() => {
+    // TEMP: just to demo data fetching for tomorrow
+    iUser.getUser(currentUserId);
+
     onPageLoadEvent();
   }, [onPageLoadEvent]);
 
