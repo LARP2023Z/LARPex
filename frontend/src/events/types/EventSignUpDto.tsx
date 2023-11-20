@@ -1,4 +1,4 @@
 export type EventSignUpDto = {
-    userId: string,
-    eventId: string
-}
+  userId: string;
+  eventId: string;
+};

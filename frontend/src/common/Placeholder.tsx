@@ -13,13 +13,17 @@ type PlaceholderProps = {
   title: string;
 };
 const Placeholder = ({ title }: PlaceholderProps) => {
+  const routesList =
+    localStorage.getItem('userName') !== null
+      ? ['/', '/events', '/payments']
+      : ['/', '/login'];
   return (
     <Draggable>
       <Window>
         <WindowHeader>Placeholder dla strony {title}</WindowHeader>
         <WindowContent>
           <MenuList inline>
-            {['/', '/login', '/events', '/payments'].map((path, i) => (
+            {routesList.map((path, i) => (
               <>
                 {i !== 0 && <Separator orientation="vertical" size="43px" />}
                 <MenuListItem>
