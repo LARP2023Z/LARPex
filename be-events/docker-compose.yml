@@ -1,0 +1,11 @@
+services:
+  be-events-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.express
+    ports:
+      - "8083:8083"
+    # volumes:
+    #   - ..:/usr/src/app
+    environment:
+      NODE_ENV: development

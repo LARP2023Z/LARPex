@@ -1,5 +1,5 @@
 services:
-  
+
   # API Gateway
   gateway:
     extends:
@@ -15,13 +15,21 @@ services:
     depends_on:
       - db
 
+  be-events-service:
+    extends:
+      file: ./be-events/docker-compose.yml
+      service: be-events-service
+    build: ./be-events/
+    depends_on:
+      - db
+
   db:
-    extends: 
+    extends:
       file: ./database/docker-compose.yml
       service: db
     volumes:
       - ./database/db:/docker-entrypoint-initdb.d/
-  
+
   liquibase:
     extends:
       file: ./database/docker-compose.yml

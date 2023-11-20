@@ -28,15 +28,42 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UserDetailResponse"
+
   /events:
     get:
-      tags:
-        - events
       summary: Get Events List
       description: Retrieve a list of events.
       responses:
-        '200':
+        "200":
           description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EventListResponse"
+              example:
+                - eventId: "0aeaad35-9878-41a4-8b39-fc506f94cdab"
+                  name: "Event1"
+                  hostname: "Host1"
+                  startDate: "2023-01-01"
+                  endDate: "2023-01-02"
+                  status: "Planned"
+                  isCurrentUserParticipating: true
+                - eventId: "48c6951d-078f-43f3-8cdd-342344a3d0a2"
+                  name: "Event2"
+                  hostname: "Host2"
+                  startDate: "2023-02-01"
+                  endDate: "2023-02-02"
+                  status: "Finished"
+                  isCurrentUserParticipating: false
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              example:
+                error: "Invalid request parameters"
+
   /events/{id}:
     parameters:
       - name: id
@@ -47,13 +74,35 @@ paths:
           type: string
           format: uuid
     get:
-      tags:
-        - events
       summary: Get Event Details
       description: Retrieve details of a specific event.
       responses:
-        '200':
+        "200":
           description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EventDetailsResponse"
+              example:
+                eventId: "48c6951d-078f-43f3-8cdd-342344a3d0a2"
+                name: "Event1"
+                hostname: "Host1"
+                startDate: "2023-01-01"
+                endDate: "2023-01-02"
+                status: "InProgress"
+                isCurrentUserParticipating: true
+                games:
+                  [
+                    { id: "a1f9d581-83e1-4e28-a2f6-e71b6d0b9732" },
+                    { id: "0aeaad35-9878-41a4-8b39-fc506f94cdab" },
+                  ]
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              example:
+                error: "Invalid request parameters"
+
   /events/{uid}/{eid}:
     parameters:
       - name: uid
@@ -70,14 +119,24 @@ paths:
         schema:
           type: string
           format: uuid
-    get:
-      tags:
-        - events
+    post:
       summary: Sign Up for Event
       description: Sign up a user for a specific event.
       responses:
-        '200':
+        "200":
           description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SignUpResponse"
+              example:
+                status: "Success"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              example:
+                error: "Invalid request parameters"
 
 components:
   schemas:
@@ -97,4 +156,52 @@ components:
           type: string
           format: date
         email:
+          type: string
+
+    EventListResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          eventId:
+            type: string
+            format: uuid
+          name:
+            type: string
+          hostname:
+            type: string
+          startDate:
+            type: string
+    EventDetailsResponse:
+      type: object
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        hostname:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        status:
+          type: string
+        isCurrentUserParticipating:
+          type: boolean
+        games:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+    SignUpResponse:
+      type: object
+      properties:
+        status:
           type: string
