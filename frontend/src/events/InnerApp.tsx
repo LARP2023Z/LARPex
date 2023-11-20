@@ -10,14 +10,23 @@ import {PSignUpWindow} from "./signupview/PSignUpWindow";
 import {VEventSignUpWindow} from "./signupview/VEventSignUpWindow";
 import {updateUSView} from "./signupview/CEventSignUpWindow";
 import {SignUpState} from "./types/SignUpState";
+import {AEvents} from "./interfaces/AEvents";
 
 const pEL: PEventsListWindow = new PEventsListWindow();
-const iEF: IEventFetch = new EventsProxy();
+
+const aEvent: AEvents = new AEvents("http://www.golestwory.pl", "userId")
+
+const eProxy = new EventsProxy();
+eProxy.injectApi(aEvent)
+const iEF: IEventFetch = eProxy;
 
 const uSE: UShowEventList = new UShowEventList(pEL, iEF);
 
 const pSU: PSignUpWindow = new PSignUpWindow()
-const iER: IEventRegistration = new EventRegistrationProxy();
+
+const eRegistration = new EventRegistrationProxy();
+eRegistration.injectApi(aEvent)
+const iER: IEventRegistration = eRegistration
 
 const uSU: USignUpForEvent = new USignUpForEvent(pSU, iER)
 
@@ -37,6 +46,7 @@ function switchView(state: ScreenId, action: ScreenId) {
 
 export const InnerApp: FC = () => {
     const [state, globalUpdateView] = useReducer(switchView, ScreenId.EVENT_LIST_VIEW);
+
     pEL.injectGlobalUpdateView(globalUpdateView);
     pSU.injectGlobalUpdateView(globalUpdateView)
     const [usData, usUpdateView] = useReducer(updateUSView, new SignUpState())

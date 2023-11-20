@@ -13,8 +13,14 @@ export class USignUpForEvent {
     }
 
     signUp(data: EventSignUpDto) {
-        const reponse = this.iES.signUp(data)
-        this.pES.handleSignUpEvent(reponse)
+        this.iES.signUp(data).then(
+            response => {
+                this.pES.handleSignUpEvent(response)
+            }
+        ).catch(
+            reason => alert(reason)
+        )
+
     }
 
     closeWindow() {
