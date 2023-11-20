@@ -10,6 +10,7 @@ export class EventProxyMock implements IEvents {
       host: 'host',
       startDate: dayjs(),
       stopDate: dayjs().add(3, 'day'),
+      price: Math.random() * 100,
     });
   }
 }
