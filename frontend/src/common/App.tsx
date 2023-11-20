@@ -6,6 +6,7 @@ import original from 'react95/dist/themes/original';
 import { EventsListView } from '../events/EventsListView';
 import { ClippyProvider } from '@react95/clippy';
 import { PaymentsPage } from 'src/payments/PaymentsPage';
+import { LoginPresenter } from '../login/LoginPresenter';
 
 // zmiencie sobie routy jak będzie trzeba B)
 const router = createBrowserRouter([
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <Placeholder title="login" />,
+    element: <LoginPresenter />,
   },
   {
     path: '/events',
@@ -38,4 +39,5 @@ const App = () => {
 };
 
 export default App;
+
 
