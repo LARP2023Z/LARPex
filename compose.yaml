@@ -20,24 +20,7 @@ services:
       file: ./be-events/docker-compose.yml
       service: be-events-service
     build: ./be-events/
-    depends_on:
-      - db
 
-  db:
-    extends:
-      file: ./database/docker-compose.yml
-      service: db
-    volumes:
-      - ./database/db:/docker-entrypoint-initdb.d/
-
-  liquibase:
-    extends:
-      file: ./database/docker-compose.yml
-      service: liquibase
-    volumes:
-      - ./database/liquibase:/liquibase/changelog
-    depends_on:
-      - db
   users-identity-service-db:
     extends: 
       file: ./user-identity-be/compose.yaml
