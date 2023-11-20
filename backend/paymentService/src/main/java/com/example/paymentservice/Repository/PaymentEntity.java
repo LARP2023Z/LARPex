@@ -25,4 +25,6 @@ class PaymentEntity {
     private double amount;
     private String currency;
     private String type;
+    String eventId;
+    String userId;
 }
