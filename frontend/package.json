@@ -25,7 +25,7 @@
     "rxjs": "7.8.1",
     "styled-components": "^5.3.6",
     "tslib": "^2.3.0",
-    "react-hook-form": "^7.48.2"
+    "react-hook-form": "^7.48.2",
     "zustand": "4.4.6"
   },
   "devDependencies": {
