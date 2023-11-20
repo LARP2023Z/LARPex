@@ -11,7 +11,7 @@ import lombok.Setter;
 import java.util.UUID;
 
 @Entity
-@Table(name = "user", schema = "users")
+@Table(name = "payment", schema = "payments")
 @Getter
 @Setter
 @AllArgsConstructor
