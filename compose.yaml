@@ -1,5 +1,5 @@
 services:
-
+  
   # API Gateway
   gateway:
     extends:
@@ -13,7 +13,7 @@ services:
       service: users-identity-service
     build: ./user-identity-be/
     depends_on:
-      - db
+      - users-identity-service-db
 
   be-events-service:
     extends:
@@ -38,3 +38,7 @@ services:
       - ./database/liquibase:/liquibase/changelog
     depends_on:
       - db
+  users-identity-service-db:
+    extends: 
+      file: ./user-identity-be/compose.yaml
+      service: users-identity-service-db
