@@ -17,9 +17,9 @@ import { UCPayForEvent } from '../useCases/UCPayForEvent';
 import { PPayWnd } from '../presenters/PPayWnd';
 import { EventProxyMock } from '../services/Events';
 import { PaymentProxyMock } from '../services/Payments';
-import { formSettings } from './aux/variables';
+import { formSettings } from './utils/variables';
 import { useEffect, useMemo, useReducer } from 'react';
-import { mapPaymentMethodToSelectOption } from './aux/utils';
+import { mapPaymentMethodToSelectOption } from './utils/utils';
 import { useNavigate } from 'react-router-dom';
 import { useClippy } from '@react95/clippy';
 

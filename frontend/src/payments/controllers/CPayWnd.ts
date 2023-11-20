@@ -5,7 +5,7 @@ import {
   PaymentFormData,
   VMPayWndData,
 } from '../viewModels/VMPayWnd';
-import { generateHappyUrl, generateSadUrl } from '../views/aux/utils';
+import { generateHappyUrl, generateSadUrl } from '../views/utils/utils';
 
 export function updatePayView(
   state: VMPayWndData,
