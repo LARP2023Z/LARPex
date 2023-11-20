@@ -10,14 +10,13 @@ module.exports = composePlugins(withNx(), withReact(), (config) => {
     devServer: {
       ...config.devServer,
       proxy: {
-         '/api': {
-              target: 'http://localhost:4200',
-              router: () => 'http://localhost:8080',
-              logLevel: 'debug',
-              pathRewrite: { '^/api': '' },
-         }
-      }
-    }
-  }
-  
+        '/api': {
+          target: 'http://localhost:4200',
+          router: () => 'http://localhost:8080',
+          logLevel: 'debug',
+          pathRewrite: { '^/api': '' },
+        },
+      },
+    },
+  };
 });
