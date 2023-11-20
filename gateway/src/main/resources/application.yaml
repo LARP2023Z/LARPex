@@ -10,3 +10,7 @@ spring:
           uri: http://users-identity-service:8080
           predicates:
             - Path=/users/**
+        - id: events
+          uri: http://be-events-service:8083
+          predicates:
+            - Path=/events/**

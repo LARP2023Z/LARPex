@@ -1,0 +1,40 @@
+{
+  "name": "larpex",
+  "version": "1.0.0",
+  "description": "Larepex API",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon - exec 'ts-node' src/index.ts",
+    "start": "tsc && node dist/index.js",
+    "build": "tsc",
+    "serve": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "larpex",
+    "larp"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.20",
+    "@types/node": "^20.8.10",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1",
+    "prisma": "^5.5.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "-": "^0.0.1",
+    "@faker-js/faker": "^8.2.0",
+    "@prisma/client": "^5.5.2",
+    "axios": "^1.6.0",
+    "envalid": "^8.0.0",
+    "save-dev": "^0.0.1-security",
+    "zod": "^3.22.4"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  }
+}
