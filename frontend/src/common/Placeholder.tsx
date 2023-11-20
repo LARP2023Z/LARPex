@@ -1,17 +1,16 @@
 import {
-    Button,
-    MenuList,
-    MenuListItem,
-    Separator,
-    Window,
-    WindowContent,
-    WindowHeader,
+  MenuList,
+  MenuListItem,
+  Separator,
+  Window,
+  WindowContent,
+  WindowHeader,
 } from 'react95';
 import { Link } from 'react-router-dom';
 import Draggable from 'react-draggable';
 
 type PlaceholderProps = {
-    title: string;
+  title: string;
 };
 const Placeholder = ({ title }: PlaceholderProps) => {
     const navigationItems =

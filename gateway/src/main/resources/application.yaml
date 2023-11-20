@@ -1,0 +1,12 @@
+springdoc:
+  swagger-ui:
+    url: "/openapi.yaml"
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: users
+          uri: http://users-identity-service:8080
+          predicates:
+            - Path=/users/**

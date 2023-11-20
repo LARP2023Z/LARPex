@@ -12,16 +12,21 @@
     "@react95/clippy": "1.0.13",
     "@react95/icons": "2.0.8",
     "@swc/helpers": "~0.5.2",
+    "dayjs": "^1.11.10",
+    "fp-ts": "2.16.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-draggable": "^4.4.6",
+    "react-hook-form": "7.48.2",
     "react-is": "18.2.0",
     "react-router": "^6.17.0",
     "react-router-dom": "^6.17.0",
     "react95": "^4.0.0",
+    "rxjs": "7.8.1",
     "styled-components": "^5.3.6",
     "tslib": "^2.3.0",
     "react-hook-form": "^7.48.2"
+    "zustand": "4.4.6"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",

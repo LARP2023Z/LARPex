@@ -1,0 +1,67 @@
+services:
+ 
+  eventsdb:
+    extends: 
+      file: ./events/docker-compose.yml
+      service: eventsdb
+    volumes:
+      - ./database/eventsdb:/eventsdb-entrypoint-initdb.d/
+
+  
+  eventsliquibase:
+    extends:
+      file: ./events/docker-compose.yml
+      service: eventsliquibase
+    volumes:
+      - ./events/liquibase:/liquibase/changelog
+    depends_on:
+      - eventsdb
+  
+  usersdb:
+    extends: 
+      file: ./users/docker-compose.yml
+      service: usersdb
+    volumes:
+      - ./database/usersdb:/users-entrypoint-initdb.d/
+  
+  usersliquibase:
+    extends:
+      file: ./users/docker-compose.yml
+      service: usersliquibase
+    volumes:
+      - ./users/liquibase:/liquibase/changelog
+    depends_on:
+      - usersdb
+
+  paymentsdb:
+    extends: 
+      file: ./payments/docker-compose.yml
+      service: paymentsdb
+    volumes:
+      - ./database/paymentsdb:/payments-entrypoint-initdb.d/
+  
+  paymentsliquibase:
+    extends:
+      file: ./payments/docker-compose.yml
+      service: paymentsliquibase
+    volumes:
+      - ./payments/liquibase:/liquibase/changelog
+    depends_on:
+      - paymentsdb
+
+  gamesdb:
+    extends: 
+      file: ./games/docker-compose.yml
+      service: gamesdb
+    volumes:
+      - ./database/gamesdb:/games-entrypoint-initdb.d/
+  
+  gamesliquibase:
+    extends:
+      file: ./games/docker-compose.yml
+      service: gamesliquibase
+    volumes:
+      - ./games/liquibase:/liquibase/changelog
+    depends_on:
+      - gamesdb      
+   

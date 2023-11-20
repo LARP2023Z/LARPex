@@ -1,6 +1,6 @@
 package pl.larp.larpex.usi.user.domain.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +14,7 @@ public class User {
   private String alias;
   private String name;
   private String surname;
-  private LocalDateTime birthDate;
+  private LocalDate birthDate;
 
   private UserCredential credential;
 }

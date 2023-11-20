@@ -3,10 +3,11 @@ import { ThemeProvider } from 'styled-components';
 import Placeholder from './Placeholder';
 
 import original from 'react95/dist/themes/original';
-import { EventsListView } from '../events/EventsListView';
 import { ClippyProvider } from '@react95/clippy';
-import { PaymentsPage } from 'src/payments/PaymentsPage';
 import {LoginPresenter} from "../login/LoginPresenter";
+import VPayWnd from 'src/payments/views/VPayWnd';
+import { InnerApp } from 'src/events/InnerApp';
+import VPayResultWnd from '../payments/views/VPayResultWnd';
 
 // zmiencie sobie routy jak będzie trzeba B)
 const router = createBrowserRouter([
@@ -20,11 +21,15 @@ const router = createBrowserRouter([
   },
   {
     path: '/events',
-    element: <EventsListView />,
+    element: <InnerApp />,
   },
   {
     path: '/payments',
-    element: <PaymentsPage />,
+    element: <VPayWnd />,
+  },
+  {
+    path: '/payments/result',
+    element: <VPayResultWnd />,
   },
 ]);
 

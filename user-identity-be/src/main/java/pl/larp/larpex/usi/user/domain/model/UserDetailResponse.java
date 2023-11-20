@@ -1,5 +1,6 @@
 package pl.larp.larpex.usi.user.domain.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -8,7 +9,7 @@ public record UserDetailResponse(
   String alias,
   String name,
   String surname,
-  LocalDateTime birthDate,
+  LocalDate birthDate,
   String email
 ) {
   public static UserDetailResponse fromUser(User user) {
