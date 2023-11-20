@@ -1,15 +1,11 @@
-import { faker } from "@faker-js/faker";
 import {
-  GetEventDetailsResponse,
   EventListRow,
-  EventsResponse,
-  GameListRow,
+  GetEventDetailsResponse,
   RegisterToEventResponse,
 } from "../dataobjects";
 import IEventsFetch from "../interfaces/eventsFetch.interface";
 import IEventsRegistration from "../interfaces/eventsRegistration.interface";
 import prisma from "../utils/prisma";
-import type { Event as EventPrisma } from "@prisma/client";
 export const eventsRegistration: IEventsRegistration = {
   registerToEvent: async function (
     userId: string,
@@ -40,10 +36,10 @@ export const eventsFetch: IEventsFetch = {
 
       const eventsMapped: EventListRow[] = events.map((event) => {
         return {
-          id: event.id,
+          eventId: event.id,
           status: event.status,
           name: event.name,
-          host: event.host_id,
+          hostname: event.host_id,
           startDate: event.start_date,
           endDate: event.end_date,
           isCurrentUserParticipating: Math.random() > 0.5,
@@ -71,9 +67,9 @@ export const eventsFetch: IEventsFetch = {
       });
 
       const eventDetailsResponse: GetEventDetailsResponse = {
-        id: event.id,
+        eventId: event.id,
         status: event.status,
-        host: event.host_id,
+        hostname: event.host_id,
         startDate: event.start_date,
         endDate: event.end_date,
         name: event.name,
