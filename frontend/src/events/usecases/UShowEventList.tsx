@@ -1,22 +1,28 @@
-import {PEventsListWindow} from "../eventslistview/PEventsListWindow";
-import {IEventFetch} from "../interfaces/IEventFetch";
+import { PEventsListWindow } from '../eventslistview/PEventsListWindow';
+import { IEventFetch } from '../interfaces/IEventFetch';
 
 export class UShowEventList {
-    pEL: PEventsListWindow;
-    iEF: IEventFetch;
+  pEL: PEventsListWindow;
+  iEF: IEventFetch;
 
-    constructor(pEL: PEventsListWindow,
-                iEF: IEventFetch) {
-        this.iEF = iEF;
-        this.pEL = pEL;
-    }
+  constructor(pEL: PEventsListWindow, iEF: IEventFetch) {
+    this.iEF = iEF;
+    this.pEL = pEL;
+  }
 
-    fetchEvents() {
-        const events = this.iEF.listsEvents();
-        this.pEL.handleShowPaginatedEvents(events)
-    }
+  fetchEvents() {
+    this.iEF
+      .listsEvents()
+      .then((events) => {
+        this.pEL.handleShowPaginatedEvents(events);
+      })
+      .catch((err) => {
+        alert(err);
+        this.pEL.handleShowPaginatedEvents([]);
+      });
+  }
 
-    onSelectEvent(eventId: string) {
-        this.pEL.handleChangeEvent(eventId)
-    }
+  onSelectEvent(eventId: string) {
+    this.pEL.handleChangeEvent(eventId);
+  }
 }

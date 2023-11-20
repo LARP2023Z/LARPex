@@ -1,11 +1,10 @@
-
 export type RegistrationResponse = {
-    status: string
-}
+  status: 'Success' | string;
+};
 
 export const RegistrationStatus = {
-    Success: "Success",
-    TooLate: "TooLate",
-    TooManyPlayers: "TooManyPlayers",
-    SystemError: "SystemError"
-}
+  Success: 'Success',
+  TooLate: 'TooLate',
+  TooManyPlayers: 'TooManyPlayers',
+  SystemError: 'SystemError',
+};

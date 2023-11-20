@@ -1,4 +1,4 @@
-import { FC, useEffect, useReducer } from 'react';
+import { FC, useEffect, useMemo, useReducer } from 'react';
 import {
   Button,
   MenuListItem,
@@ -34,7 +34,10 @@ export const VEventsListWindow: FC<{
   const [elData, elUpdateView] = useReducer(updateELView, new EventListState());
 
   pEL.injectDataHandles(elData, elUpdateView);
-  const [onLoadPageEvent, onClickEvent] = CEventsListWindow(uSE);
+  const [onLoadPageEvent, onClickEvent] = useMemo(
+    () => CEventsListWindow(uSE),
+    [uSE]
+  );
 
   pSU.injectDataHandles(usData, usUpdateView);
 
@@ -42,10 +45,11 @@ export const VEventsListWindow: FC<{
   const [onSignUpEvent, closeWindow] = CSignUpWindow(uSU);
 
   useEffect(() => {
-    console.log(onLoadPageEvent);
-    onLoadPageEvent(
-      'Zapytać bo nie powinno być argumentów a się wykrzacza bez XD'
-    );
+    if (onLoadPageEvent) {
+      onLoadPageEvent(
+        'Zapytać bo nie powinno być argumentów a się wykrzacza bez XD'
+      );
+    }
   }, [onLoadPageEvent]);
 
   return (
@@ -129,7 +133,7 @@ export const VEventsListWindow: FC<{
                   if (elData && elData.selectedEventId) {
                     onSignUpEvent({
                       eventId: elData.selectedEventId,
-                      userId: 'USERID',
+                      userId: '8ebdb302-2589-4255-b060-d70d1bc974b8',
                     });
                   }
                 }}
