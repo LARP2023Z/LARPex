@@ -5,8 +5,5 @@
    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
                        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
-   <include file="changelog/contexts/init_schemas.xml" />
    <include file="changelog/contexts/tables.xml" />
-   <include file="changelog/contexts/foreign_keys.xml" />
-   <include file="changelog/contexts/mockdata.xml" />
 </databaseChangeLog> 
