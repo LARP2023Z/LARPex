@@ -32,7 +32,7 @@ Given:
 2. System closes window "Lista wydarzeń"
 3. System displays a window "Placeholder dla strony index".
 
-## Use case UC12&U: Zapisanie się na wydarzenie
+## Use case UC12&U7: Zapisanie się na wydarzenie
 
 ### Scenario UC12/1: Event exists but player limit is reached
 Given:
