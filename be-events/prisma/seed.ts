@@ -3,9 +3,15 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const Q = 10;
+const Q = 100;
 
 async function run() {
+  const tablesEmpty = await checkTablesEmpty();
+
+  if (!tablesEmpty) {
+    return;
+  }
+
   const events = Array(Q)
     .fill(null)
     .map(() => {
@@ -53,7 +59,6 @@ async function run() {
 
   const _plays = await prisma.$transaction(createPlays);
 
-  // const _plays = await prisma.$transaction(createPlays);
   const players = Array(Q)
     .fill(null)
     .map(() => {
@@ -76,6 +81,14 @@ async function run() {
   );
 
   const _players = await prisma.$transaction(createPlayers);
+}
+
+async function checkTablesEmpty() {
+  const eventCount = await prisma.event.count();
+  const playCount = await prisma.play.count();
+  const playerCount = await prisma.player.count();
+
+  return eventCount <= 0 || playCount <= 0 || playerCount <= 0;
 }
 
 void run();

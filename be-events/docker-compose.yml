@@ -3,7 +3,31 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.express
-    ports:
-      - "8083:8083"
     environment:
       NODE_ENV: development
+      BE_EVENTS___PORT: ${BE_EVENTS___PORT}
+      BE_EVENTS___PRISMA_STUDIO_PORT: ${BE_EVENTS___PRISMA_STUDIO_PORT}
+      BE_EVENTS___DATABASE_URL: ${BE_EVENTS___DATABASE_URL}
+    ports:
+      - ${BE_EVENTS___PORT}:${BE_EVENTS___PORT}
+      - ${BE_EVENTS___PRISMA_STUDIO_PORT}:${BE_EVENTS___PRISMA_STUDIO_PORT}
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+  be-events-service-db:
+    build:
+      context: .
+      dockerfile: Dockerfile.postgres
+    healthcheck:
+      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: events
+    ports:
+      - ${BE_EVENTS___DATABASE_PORT}:5432
