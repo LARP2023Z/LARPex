@@ -34,3 +34,17 @@ services:
     extends:
       file: ./be-events/docker-compose.yml
       service: be-events-service-db
+
+  # games
+  be-games-service:
+    extends:
+      file: ./be-games/docker-compose.yml
+      service: be-games-service
+    build: ./be-games/
+    depends_on:
+      - be-games-service-db
+
+  be-games-service-db:
+    extends:
+      file: ./be-games/docker-compose.yml
+      service: be-games-service-db

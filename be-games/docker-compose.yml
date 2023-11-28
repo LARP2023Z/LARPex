@@ -1,0 +1,33 @@
+services:
+  be-games-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.express
+    environment:
+      NODE_ENV: development
+      BE_GAMES___PORT: ${BE_GAMES___PORT}
+      BE_GAMES___PRISMA_STUDIO_PORT: ${BE_GAMES___PRISMA_STUDIO_PORT}
+      BE_GAMES___DATABASE_URL: ${BE_GAMES___DATABASE_URL}
+    ports:
+      - ${BE_GAMES___PORT}:${BE_GAMES___PORT}
+      - ${BE_GAMES___PRISMA_STUDIO_PORT}:${BE_GAMES___PRISMA_STUDIO_PORT}
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+  be-games-service-db:
+    build:
+      context: .
+      dockerfile: Dockerfile.postgres
+    healthcheck:
+      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: games
+    ports:
+      - ${BE_GAMES___DATABASE_PORT}:5432

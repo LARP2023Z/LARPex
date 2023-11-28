@@ -1,0 +1,16 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("BE_GAMES___DATABASE_URL")
+}
+
+model Game {
+  id          String @id @default(uuid())
+  author      String
+  max_players Int
+  name        String
+}
