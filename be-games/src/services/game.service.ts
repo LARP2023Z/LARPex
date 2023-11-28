@@ -15,7 +15,7 @@ export const gamesFetch: IGamesFetch = {
       });
       return game;
     } catch (error) {
-      throw "Error to fetch game";
+      throw new Error("Error to fetch game");
     }
   },
   getGamesDetails: async function (): Promise<GetGamesDetailsResponse> {
@@ -23,7 +23,7 @@ export const gamesFetch: IGamesFetch = {
       const games = await prisma.game.findMany();
       return games;
     } catch (error) {
-      throw "Error to fetch games";
+      throw new Error("Error to fetch games");
     }
   },
 };
