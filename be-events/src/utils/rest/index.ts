@@ -1,5 +1,4 @@
 import axios from "axios";
-import env from "../env";
 import { requestSuccessInterceptor } from "./inceptors/onRequest";
 import {
   responseFailureInterceptor,
@@ -10,7 +9,7 @@ const restClient = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  baseURL: env.PAYMENTS_ENDPOINT,
+  baseURL: "",
 });
 
 restClient.interceptors.request.use(requestSuccessInterceptor);

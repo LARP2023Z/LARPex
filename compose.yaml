@@ -1,5 +1,5 @@
 services:
-  
+
   # API Gateway
   gateway:
     extends:
@@ -7,6 +7,7 @@ services:
       service: gateway
     build: ./gateway/
 
+  # users-identity
   users-identity-service:
     extends:
       file: ./user-identity-be/compose.yaml
@@ -15,13 +16,21 @@ services:
     depends_on:
       - users-identity-service-db
 
+  users-identity-service-db:
+    extends:
+      file: ./user-identity-be/compose.yaml
+      service: users-identity-service-db
+
+  # events
   be-events-service:
     extends:
       file: ./be-events/docker-compose.yml
       service: be-events-service
     build: ./be-events/
+    depends_on:
+      - be-events-service-db
 
-  users-identity-service-db:
-    extends: 
-      file: ./user-identity-be/compose.yaml
-      service: users-identity-service-db
+  be-events-service-db:
+    extends:
+      file: ./be-events/docker-compose.yml
+      service: be-events-service-db

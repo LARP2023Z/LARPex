@@ -2,6 +2,8 @@ docker_copmose = docker compose
 docker_copmose_path_db = database/docker-compose.yml
 docker_copmose_path_app = docker/docker-compose.yml
 
+docker_events_service_db = be-events-service-db
+
 prisma = npx prisma
 prisma_db = $(prisma) db
 
@@ -17,6 +19,9 @@ d-db:
 
 d-s:
 	$(docker_copmose) -f $(docker_copmose_path_app) up -d --build
+
+d-db-login:
+	$(docker_copmose) -f $(docker_copmose_path_app) run $(docker_events_service_db) bash -c "psql -h $(docker_events_service_db) -d events -U root"
 
 # EXPRESS SERVER
 s-run:
