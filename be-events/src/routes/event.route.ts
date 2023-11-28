@@ -1,10 +1,9 @@
 import express from "express";
 import eventController from "../controllers/event.controller";
-import auth from "../middlewares/auth";
 
 const eventRouter = express.Router();
 
-eventRouter.use((req, res, next) => {
+eventRouter.use((_req, _res, next) => {
   console.log("Time: ", Date.now());
   next();
 });

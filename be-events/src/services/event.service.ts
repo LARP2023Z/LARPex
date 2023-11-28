@@ -8,7 +8,7 @@ import IEventsRegistration from "../interfaces/eventsRegistration.interface";
 import prisma from "../utils/prisma";
 export const eventsRegistration: IEventsRegistration = {
   registerToEvent: async function (
-    userId: string,
+    _userId: string,
     eventId: string
   ): Promise<RegisterToEventResponse> {
     try {

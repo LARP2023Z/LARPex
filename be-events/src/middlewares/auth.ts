@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import globalMock from "../_mock/global.mock";
 
 const authenticationValidator = async (
-  req: Request,
+  _req: Request,
   res: Response,
   next: NextFunction
 ) => {
