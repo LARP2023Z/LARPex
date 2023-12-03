@@ -7,9 +7,10 @@ import { ClippyProvider } from '@react95/clippy';
 import VPayWnd from 'src/payments/views/VPayWnd';
 import { InnerApp } from 'src/events/InnerApp';
 import VPayResultWnd from '../payments/views/VPayResultWnd';
+import { VQrScannerWnd } from 'src/qr-scanner/VQrScannerWnd';
 
 // zmiencie sobie routy jak będzie trzeba B)
-const router = createBrowserRouter([
+export const routes = [
   {
     path: '/',
     element: <Placeholder title="index" />,
@@ -27,10 +28,18 @@ const router = createBrowserRouter([
     element: <VPayWnd />,
   },
   {
+    path: '/qr-code',
+    element: <VQrScannerWnd />,
+  },
+  {
     path: '/payments/result',
     element: <VPayResultWnd />,
   },
-]);
+];
+
+export const routePaths = routes.map((route) => route.path);
+
+const router = createBrowserRouter(routes);
 
 const App = () => {
   return (
