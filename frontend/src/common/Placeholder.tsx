@@ -8,10 +8,12 @@ import {
 } from 'react95';
 import { Link } from 'react-router-dom';
 import Draggable from 'react-draggable';
+import { routePaths } from './App';
 
 type PlaceholderProps = {
   title: string;
 };
+
 const Placeholder = ({ title }: PlaceholderProps) => {
   return (
     <Draggable>
@@ -19,7 +21,7 @@ const Placeholder = ({ title }: PlaceholderProps) => {
         <WindowHeader>Placeholder dla strony {title}</WindowHeader>
         <WindowContent>
           <MenuList inline>
-            {['/', '/login', '/events', '/payments'].map((path, i) => (
+            {routePaths.map((path, i) => (
               <>
                 {i !== 0 && <Separator orientation="vertical" size="43px" />}
                 <MenuListItem>
