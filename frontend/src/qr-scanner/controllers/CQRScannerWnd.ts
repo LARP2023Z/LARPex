@@ -3,13 +3,13 @@ import { UCProcessQrCode } from '../useCases/UCProcessQrCode';
 import {
   QrScannerAction,
   QrScannerActionId,
-  VMQrScannerWnd,
+  VMQrScannerWndData,
 } from '../viewModels/VMQrScannerWnd';
 
 export function updateQRScannerView(
-  state: VMQrScannerWnd,
+  state: VMQrScannerWndData,
   action: QrScannerAction
-): VMQrScannerWnd {
+): VMQrScannerWndData {
   switch (action.type) {
     case QrScannerActionId.UPDATE_CODE:
       if (!action.data)

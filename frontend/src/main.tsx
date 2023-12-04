@@ -1,4 +1,4 @@
-import "./main.css";
+import './main.css';
 import * as ReactDOM from 'react-dom/client';
 import App from './common/App';
 import './Background.css';

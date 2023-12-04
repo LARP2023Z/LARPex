@@ -10,7 +10,7 @@ import {
   updateQRScannerView,
 } from './controllers/CQRScannerWnd';
 import { useNavigate } from 'react-router-dom';
-import { VMQrScannerWnd } from './viewModels/VMQrScannerWnd';
+import { VMQrScannerWndData } from './viewModels/VMQrScannerWnd';
 import { QrReaderWrapper } from './styles';
 import { QrCode } from './services/QrCode';
 
@@ -19,7 +19,7 @@ const iQc = new QrCode();
 const ucPQC = new UCProcessQrCode(pQS, iQc);
 
 export function VQrScannerWnd() {
-  const emptyData: VMQrScannerWnd = new VMQrScannerWnd();
+  const emptyData: VMQrScannerWndData = new VMQrScannerWndData();
 
   const [qrData, qrUpdateView] = useReducer(updateQRScannerView, emptyData);
   pQS.injectDataHandle(qrData, qrUpdateView);
