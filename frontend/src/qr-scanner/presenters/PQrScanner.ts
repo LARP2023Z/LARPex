@@ -2,14 +2,14 @@ import { Dispatch } from 'react';
 import {
   QrScannerAction,
   QrScannerActionId,
-  VMQrScannerWnd,
+  VMQrScannerWndData,
 } from '../viewModels/VMQrScannerWnd';
 
 export class PQrScanner {
-  vmqs?: VMQrScannerWnd;
+  vmqs?: VMQrScannerWndData;
   uv?: Dispatch<QrScannerAction>;
 
-  injectDataHandle(vmqs: VMQrScannerWnd, uv: Dispatch<QrScannerAction>) {
+  injectDataHandle(vmqs: VMQrScannerWndData, uv: Dispatch<QrScannerAction>) {
     this.vmqs = vmqs;
     this.uv = uv;
   }
