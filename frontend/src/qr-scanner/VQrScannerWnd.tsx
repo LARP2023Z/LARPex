@@ -12,9 +12,11 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { VMQrScannerWnd } from './viewModels/VMQrScannerWnd';
 import { QrReaderWrapper } from './styles';
+import { QrCode } from './services/QrCode';
 
 const pQS = new PQrScanner();
-const ucPQC = new UCProcessQrCode(pQS);
+const iQc = new QrCode();
+const ucPQC = new UCProcessQrCode(pQS, iQc);
 
 export function VQrScannerWnd() {
   const emptyData: VMQrScannerWnd = new VMQrScannerWnd();
