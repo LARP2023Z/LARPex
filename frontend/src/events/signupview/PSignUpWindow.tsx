@@ -15,7 +15,6 @@ export class PSignUpWindow extends PresentationDispatcher {
   }
 
   handleSignUpEvent(response: RegistrationResponse) {
-    console.log(response.status);
     this.mState.status = response.status;
     this.mState.isWindowActive = true;
     this.uView?.(ActionId.SIGN_UP);

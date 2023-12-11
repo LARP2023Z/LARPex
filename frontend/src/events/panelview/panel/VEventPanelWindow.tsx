@@ -1,12 +1,16 @@
 import Draggable from "react-draggable";
 import { MenuListItem, ScrollView, StyledButton, Window, WindowContent, WindowHeader } from "react95";
+import { FC } from "react";
+import { EventPanelDataResponse } from "../../types/EventPanelDataResponse";
 
-export const VEventPanelWindow = () => {
+export const VEventPanelWindow: FC<{
+  init_Data?: EventPanelDataResponse | undefined
+}> = ({ init_Data }) => {
 
   return (
     <Draggable>
       <Window>
-        <WindowHeader>Panel - Wydarzenie 1</WindowHeader>
+        <WindowHeader>Panel - {init_Data ? init_Data.eventName : "Wydarzenie 1"}</WindowHeader>
         <WindowContent>
           <StyledButton>Zamknij</StyledButton>
           <StyledButton>Usuń gracza</StyledButton>
@@ -15,26 +19,15 @@ export const VEventPanelWindow = () => {
           <StyledButton>Zakończ</StyledButton>
           <StyledButton>Wstrzymaj</StyledButton>
           <ScrollView style={{ width: "450px", height: "200px" }}>
-
-            <MenuListItem>
-              {/*        onClick={() => {*/}
-              {/*          selectEvent(data.id);*/}
-              {/*        }}*/}
-              {/*        key={data.id}*/}
-              {/*        style={*/}
-              {/*          emData && data.id === emData.selectedEventId*/}
-              {/*            ? {*/}
-              {/*              background: "#05007e",*/}
-              {/*              color: "white"*/}
-              {/*            }*/}
-              {/*            : {}*/}
-              {/*        }*/}
-              {/*      >*/}
-              {/*        <p style={{ whiteSpace: "nowrap" }}>*/}
-              {/*          {data.eventName}; {data.gameName}*/}
-              {/*          ; {data.date}; {data.hour}; {data.takenSeats}/{data.allSeats} uczestników*/}
-              {/*        </p>*/}
-            </MenuListItem>
+            {init_Data && init_Data.players &&
+              init_Data.players.map(player =>
+                <MenuListItem>
+                  <p style={{ whiteSpace: "nowrap" }}>
+                    {player.name}; {player.character}; {player.job}; {player.className}
+                  </p>
+                </MenuListItem>
+              )
+            }
           </ScrollView>
         </WindowContent>
       </Window>
