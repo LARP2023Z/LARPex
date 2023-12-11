@@ -29,7 +29,12 @@ const router = createBrowserRouter([
   {
     path: '/payments/result',
     element: <VPayResultWnd />,
+
   },
+  {
+    path: "/panel",
+    element: <InnerApp />
+  }
 ]);
 
 const App = () => {
