@@ -6,6 +6,7 @@ import { UEventMenuWindow } from "./UEventMenuWindow";
 import { MenuState } from "../../types/MenuState";
 import { EventPanelDataResponse } from "../../types/EventPanelDataResponse";
 import { PEventMenuWindow } from "./PEventMenuWindow";
+import { useNavigate } from "react-router-dom";
 
 export const VEventMenuWindow: FC<{
   uEventMenu: UEventMenuWindow
@@ -13,6 +14,7 @@ export const VEventMenuWindow: FC<{
 }>
   = ({ uEventMenu, pEventMenu }) => {
 
+  const nav = useNavigate();
   const [emData, emUpdateView] = useReducer(updateEMView, new MenuState());
 
   const { onClickEvent, onBack, onLoadPage, selectEvent } = useMemo(() =>
@@ -26,8 +28,6 @@ export const VEventMenuWindow: FC<{
     onLoadPage();
   }, [onLoadPage]);
 
-
-  console.log(emData);
 
   return (<Draggable>
     <Window>
@@ -63,10 +63,15 @@ export const VEventMenuWindow: FC<{
         <StyledButton
           onClick={() => {
             const id: string = emData.selectedEventId;
-            console.log(id);
             onClickEvent(id);
           }}
           active={emData.selectedEventId.length === 0}>Wyświetl panel</StyledButton>
+        <StyledButton
+          onClick={() => {
+            onBack();
+            nav("/");
+          }}
+        >Wróć</StyledButton>
       </WindowContent>
     </Window>
   </Draggable>);
