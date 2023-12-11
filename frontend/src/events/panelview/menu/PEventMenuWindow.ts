@@ -7,7 +7,7 @@ import { EventPanelDataResponse } from "../../types/EventPanelDataResponse";
 
 export class PEventMenuWindow extends PresentationDispatcher {
   mState!: MenuState;
-  pState: any;
+  pState?: EventPanelDataResponse | undefined;
   uView!: Dispatch<ActionId>;
 
   injectDataHandles(s: MenuState, uv: Dispatch<ActionId>, pState: any) {
@@ -17,11 +17,10 @@ export class PEventMenuWindow extends PresentationDispatcher {
   }
 
   handleGoBackEvent() {
-
+    this.gUpdateView?.(ScreenId.MAIN);
   }
 
   handleSelectEvent(id: string) {
-    console.log("???");
     this.mState.selectedEventId = id;
     this.uView?.(ActionId.FETCH);
     this.gUpdateView?.(ScreenId.EVENT_MENU_VIEW);
@@ -31,10 +30,9 @@ export class PEventMenuWindow extends PresentationDispatcher {
     const events = this.mState.eventsList;
     const i = this.mState.eventsList.findIndex(e => e.id === id);
     if (Object.prototype.hasOwnProperty.call(events, i)) {
-      console.log("???");
+      this.pState = events[i];
       this.uView?.(ActionId.FETCH);
       this.gUpdateView(ScreenId.EVENT_PANEL_VIEW);
-      console.log(ScreenId.EVENT_PANEL_VIEW + " ???");
     } else {
       alert("ELEMENT NOT FOUND");
     }

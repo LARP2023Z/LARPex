@@ -24,7 +24,6 @@ export class UEventMenuWindow {
   }
 
   loadPageData() {
-    console.log("UC load");
     const data = this.iEP.getEventData();
     this.pEM.handleShowMenuEvents(data);
   }

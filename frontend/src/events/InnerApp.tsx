@@ -1,4 +1,4 @@
-import { FC, useReducer } from "react";
+import { FC, useEffect, useReducer } from "react";
 import { PEventsListWindow } from "./eventslistview/PEventsListWindow";
 import { EventsProxy, IEventFetch } from "./interfaces/IEventFetch";
 import { UShowEventList } from "./usecases/UShowEventList";
@@ -16,6 +16,7 @@ import { PEventMenuWindow } from "./panelview/menu/PEventMenuWindow";
 import { IEventPanel, MockedAPI } from "./panelview/menu/IEventPanel";
 import { useLocation } from "react-router";
 import { VEventPanelWindow } from "./panelview/panel/VEventPanelWindow";
+import { useNavigate } from "react-router-dom";
 
 const pEL: PEventsListWindow = new PEventsListWindow();
 
@@ -61,6 +62,7 @@ function switchView(state: ScreenId, action: ScreenId) {
 export const InnerApp: FC = () => {
 
   const location = useLocation();
+  const navigation = useNavigate();
 
   const [_state, globalUpdateView] = useReducer(
     switchView,
@@ -73,7 +75,13 @@ export const InnerApp: FC = () => {
 
   const [usData, usUpdateView] = useReducer(updateUSView, new SignUpState());
 
-  console.log(_state, ScreenId.EVENT_MENU_VIEW, ScreenId.EVENT_LIST_VIEW);
+
+  useEffect(() => {
+    if (_state === ScreenId.MAIN) {
+      navigation("/");
+    }
+
+  }, [_state, navigation]);
 
   return (
     <div>
@@ -98,7 +106,7 @@ export const InnerApp: FC = () => {
       }
       {
         _state === ScreenId.EVENT_PANEL_VIEW &&
-        <VEventPanelWindow />
+        <VEventPanelWindow init_Data={pEM.pState} />
       }
     </div>
   );
