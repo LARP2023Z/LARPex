@@ -1,3 +1,13 @@
+import { PEventPanelWindow } from "./PEventPanelWindow";
+
 export class UEventPanelWindow {
- // pEP: PEventP
+  pEM: PEventPanelWindow;
+
+  constructor(pEM: PEventPanelWindow) {
+    this.pEM = pEM;
+  }
+
+  goBack() {
+    this.pEM.handleGoBack();
+  }
 }

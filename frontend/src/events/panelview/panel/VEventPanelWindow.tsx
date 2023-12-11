@@ -1,18 +1,29 @@
 import Draggable from "react-draggable";
 import { MenuListItem, ScrollView, StyledButton, Window, WindowContent, WindowHeader } from "react95";
-import { FC } from "react";
+import { FC, useMemo, useReducer } from "react";
 import { EventPanelDataResponse } from "../../types/EventPanelDataResponse";
+import { UEventPanelWindow } from "./UEventPanelWindow";
+import { PEventPanelWindow } from "./PEventPanelWindow";
+import { CEventMenuWindow } from "../menu/CEventMenuWindow";
+import { MenuState } from "../../types/MenuState";
+import { CEventPanelWindow, updateEPView } from "./CEventPanelWindow";
 
 export const VEventPanelWindow: FC<{
   init_Data?: EventPanelDataResponse | undefined
-}> = ({ init_Data }) => {
+  uPanelWindow: UEventPanelWindow
+  pPanelWindow: PEventPanelWindow
+}> = ({ init_Data, uPanelWindow, pPanelWindow }) => {
+  const [epData, epUpdateView] = useReducer(updateEPView, new MenuState());
+
+  const { onBack } = useMemo(() =>
+    CEventPanelWindow(uPanelWindow), [uPanelWindow]);
 
   return (
     <Draggable>
       <Window>
         <WindowHeader>Panel - {init_Data ? init_Data.eventName : "Wydarzenie 1"}</WindowHeader>
         <WindowContent>
-          <StyledButton>Zamknij</StyledButton>
+          <StyledButton onClick={onBack}>Zamknij</StyledButton>
           <StyledButton>Usuń gracza</StyledButton>
           <StyledButton>Wyślij podpowiedź</StyledButton>
           <StyledButton>Uruchom</StyledButton>
