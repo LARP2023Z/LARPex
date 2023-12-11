@@ -1,8 +1,13 @@
 import {
   EventListRow,
   GetEventDetailsResponse,
+  GetEventManagementDetailsRequest,
+  LaunchEventCommand,
+  LaunchResponse,
+  ManagementEventDetails,
   RegisterToEventResponse,
 } from "../dataobjects";
+import IEventManager from "../interfaces/eventManager.interface";
 import IEventsFetch from "../interfaces/eventsFetch.interface";
 import IEventsRegistration from "../interfaces/eventsRegistration.interface";
 import prisma from "../utils/prisma";
@@ -82,5 +87,16 @@ export const eventsFetch: IEventsFetch = {
     } catch (error) {
       throw new Error("Failed to fetch event details.");
     }
+  },
+};
+
+export const eventManager: IEventManager = {
+  launchEvent: function (command: LaunchEventCommand): Promise<LaunchResponse> {
+    throw new Error("Function not implemented.");
+  },
+  getEventManagementDetails: function (
+    command: GetEventManagementDetailsRequest
+  ): Promise<ManagementEventDetails> {
+    throw new Error("Function not implemented.");
   },
 };

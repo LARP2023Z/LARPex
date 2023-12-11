@@ -12,10 +12,13 @@ eventRouter.use((_req, _res, next) => {
 eventRouter.get("/", eventController.getEventList);
 eventRouter.get("/:id", eventController.getDetailEvent);
 eventRouter.post("/:uid/:eid", eventController.signUp);
+
 eventRouter.post("/pay/:uid/:eid/:method", paymentController.payForEvent);
 eventRouter.get(
   "/confirm/:uid/:eid",
   paymentController.confirmThatPaymentExists
 );
 
+eventRouter.post("/manager/launch", eventController.launchEvent);
+eventRouter.get("/manager/", eventController.getEventManagementDetails);
 export default eventRouter;

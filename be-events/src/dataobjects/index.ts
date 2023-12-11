@@ -62,6 +62,25 @@ const confirmThatPaymentExistsResponseSchema = z.object({
   exists: z.boolean(),
 });
 
+const launchResponseSchema = z.object({});
+const launchEventCommandSchema = z.object({
+  eventId: z.string(),
+});
+const getEventManagementDetailsRequestSchema = z.object({
+  eventId: z.string(),
+});
+const managementEventDetailsSchema = z.object({
+  eventId: z.string(),
+  name: z.string(),
+  hostname: z.string(),
+  startDate: z.string().datetime(),
+  endDate: z.string().datetime(),
+  status: z.string(),
+  games: z.array(gameListRowSchema),
+  numberOfParticipants: z.number(),
+  price: z.number(),
+});
+//
 export type RegistrationStatus = z.infer<typeof registrationStatusSchema>;
 export type RegisterToEventResponse = z.infer<
   typeof registerToEventResponseSchema
@@ -81,4 +100,13 @@ export type ConfirmThatPaymentExistsRequest = z.infer<
 >;
 export type ConfirmThatPaymentExistsResponse = z.infer<
   typeof confirmThatPaymentExistsResponseSchema
+>;
+
+export type LaunchResponse = z.infer<typeof launchResponseSchema>;
+export type LaunchEventCommand = z.infer<typeof launchEventCommandSchema>;
+export type GetEventManagementDetailsRequest = z.infer<
+  typeof getEventManagementDetailsRequestSchema
+>;
+export type ManagementEventDetails = z.infer<
+  typeof managementEventDetailsSchema
 >;
