@@ -17,6 +17,8 @@ import { IEventPanel, MockedAPI } from "./panelview/menu/IEventPanel";
 import { useLocation } from "react-router";
 import { VEventPanelWindow } from "./panelview/panel/VEventPanelWindow";
 import { useNavigate } from "react-router-dom";
+import { UEventPanelWindow } from "./panelview/panel/UEventPanelWindow";
+import { PEventPanelWindow } from "./panelview/panel/PEventPanelWindow";
 
 const pEL: PEventsListWindow = new PEventsListWindow();
 
@@ -40,6 +42,9 @@ const pEM: PEventMenuWindow = new PEventMenuWindow();
 
 const uEM: UEventMenuWindow = new UEventMenuWindow(pEM, iEM);
 
+const pEP = new PEventPanelWindow();
+const uEP = new UEventPanelWindow(pEP);
+
 function switchView(state: ScreenId, action: ScreenId) {
   let newState = state;
   switch (action) {
@@ -54,6 +59,9 @@ function switchView(state: ScreenId, action: ScreenId) {
       break;
     case ScreenId.EVENT_PANEL_VIEW:
       newState = ScreenId.EVENT_PANEL_VIEW;
+      break;
+    case ScreenId.MAIN:
+      newState = ScreenId.MAIN;
       break;
   }
   return newState;
@@ -72,6 +80,7 @@ export const InnerApp: FC = () => {
   pEL.injectGlobalUpdateView(globalUpdateView);
   pSU.injectGlobalUpdateView(globalUpdateView);
   pEM.injectGlobalUpdateView(globalUpdateView);
+  pEP.injectGlobalUpdateView(globalUpdateView);
 
   const [usData, usUpdateView] = useReducer(updateUSView, new SignUpState());
 
@@ -106,7 +115,7 @@ export const InnerApp: FC = () => {
       }
       {
         _state === ScreenId.EVENT_PANEL_VIEW &&
-        <VEventPanelWindow init_Data={pEM.pState} />
+        <VEventPanelWindow init_Data={pEM.pState} pPanelWindow={pEP} uPanelWindow={uEP} />
       }
     </div>
   );
