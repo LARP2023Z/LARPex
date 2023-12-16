@@ -114,18 +114,20 @@ Given:
 ### Scenario UC44/1: Joining an event
 Given:
 - Event exists
-- Event is joinable ( has not been launched nor exceeds maximum number of players )
-- User is in panel "Dołączenie do wydarzenia"
-0. User clicks button "Dołącz"
-1. System displays panel "Panel gracza" with visible attribiutes {game_name, character name} and buttons {"Wyswietl mape lokacji", "Ocen gre", "Sprawdz ekwipunek", "Sprawdz aktualny stan gry"}.
+- Event is joinable (has been launched and is registered to this event)
+- User is in panel "Lista wydarzeń"
+0. User selects event on top of the list
+1. System displays button "Dołącz"
+1. User clicks button "Dołącz"
+2. System displays panel "Panel gracza" with visible attribiutes {game_name, character name} and buttons {"Wyswietl mape lokacji", "Ocen gre", "Sprawdz ekwipunek", "Sprawdz aktualny stan gry"}.
 ## Use case UC49: Wejście w interakcję z kodem QR
 >**⚠️Warning⚠️** 
 >Should be discussed with the client in greater detail. This is a work in progress.
 ### Scenario UC49/1: An interaction has been used
 Given:
 - Interaction exists
-- User is in camera functionality
 - Maintenance Actor has checked the state of the database entry corelating to the event about to be launched.
-0. User scans the QR code.
-1. System displays a message "Interaction {interaction name} has been used".
-2. Maintenance Actor checks if an interaction was used in the database entry. The entry should have by all visible attribiutes changed state.
+0. User clicks "Idź do /qr-code"
+1. User scans the QR code.
+2. System displays a message "Interaction {interaction name} has been used".
+3. Maintenance Actor checks if an interaction was used in the database entry. The entry should have by all visible attribiutes changed state.
