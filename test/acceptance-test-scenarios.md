@@ -74,60 +74,52 @@ Given:
 8. System closes the window named "Success".
 9. System displays a window named "Lista wydarzeń".
 
-## Use case UC17: Wyświetlenie panelu wydarzenia
-### Scenario UC17/1: Succesfull selection of an event and closing the panel
-Given:
--  Event exists
--  Event is shown in "Menu zarządzania wydarzeniami"
--  User is in panel "Menu zarządzania wydarzeniami"
-0. User selects an event from menu and clicks "Wyświetl panel".
-1. System displays a window named "Panel Wydarzenia" with a list of players possesing atribiutes {name, character, class}. The windows should 
-contain buttons {"Usuń gracza", "Wyślij podpowiedź", "Uruchom", "Zakończ", "Wstrzymaj","Zamknij"}.
-2. User clicks button "Zamknij".
-3. System displays panel "Menu zarządzania wydarzeniami".
-
-## Use case UC14: Uruchomienie wydarzenia
+## Use case UC14 & UC17: Uruchomienie wydarzenia
 ### Scenario UC14/1: Succesfull launch of the event
 Given:
 -  Event exists
--  User is in panel "Panel wydarzenia" as described in *UC17/1* scenario.
+-  User is in panel "Lista wydarzeń".
 -  Maintenance Actor has checked the state of the database entry corelating to the event about to be launched.
+0. User selects event on top of the list
+1. User cannot see button "Dołącz".
+0. User clicks "Wyświetl panel".
+1. System displays a window named "Panel Wydarzenia" with a list of players possesing atribiutes {name, character, class}. The windows should 
+contain buttons {"Usuń gracza", "Wyślij podpowiedź", "Uruchom", "Zakończ", "Wstrzymaj","Zamknij"}.
 0. User clicks button "Uruchom".
 1. System displays a popup with the following message "Czy na pewno chcesz uruchomić wydarzenie ?" and buttons "Tak" and "Nie".
 2. User clicks button "Tak".
 3. System displays popup with the following message "Wydarzenie zostało uruchomione" and a button "Zamknij".
 4. User clicks "Zamknij".
-5. System displys panel "Panel wydarzenia"
-6. Maintenance Actor checks if an event was launched in the database entry. The entry should have by all visible attribiutes changed state.
+5. System displys panel "Panel wydarzenia".
+6. User sees that button "Urchom" is unselectable.
+7. User clicks "Zamknij".
+8. System displays panel "Lista wydarzeń".
+9. User should see button "Dołącz".
+10. System displays panel "Panel gracza" with visible attribiutes {game_name, character name} and buttons {"Wyswietl mape lokacji", "Ocen gre", "Sprawdz ekwipunek", "Sprawdz aktualny stan gry"}.
+
 ### Scenario UC14/2: Aborting launch of the event
 Given:
 -  Event exists
 -  User is in panel "Panel wydarzenia" as described in *UC17/1* scenario.
 -  Maintenance Actor has checked the state of the database entry corelating to the event about to be launched.
+0. User selects event on top of the list
+1. User cannot see button "Dołącz".
+0. User clicks "Wyświetl panel".
+1. System displays a window named "Panel Wydarzenia" with a list of players possesing atribiutes {name, character, class}. The windows should 
+contain buttons {"Usuń gracza", "Wyślij podpowiedź", "Uruchom", "Zakończ", "Wstrzymaj","Zamknij"}.
 0. User clicks button "Uruchom".
 1. System displays a popup with the following message "Czy na pewno chcesz uruchomić wydarzenie ?" and buttons "Tak" and "Nie".
 2. User clicks button "Nie".
 3. System displys panel "Panel wydarzenia"
 4. Maintenance Actor checks if an event was launched in the database entry. The entry should *not* have changed its state.
 
-## Use case UC44: Dołączenie do wydarzenia
-### Scenario UC44/1: Joining an event
-Given:
-- Event exists
-- Event is joinable (has been launched and is registered to this event)
-- User is in panel "Lista wydarzeń"
-0. User selects event on top of the list
-1. System displays button "Dołącz"
-1. User clicks button "Dołącz"
-2. System displays panel "Panel gracza" with visible attribiutes {game_name, character name} and buttons {"Wyswietl mape lokacji", "Ocen gre", "Sprawdz ekwipunek", "Sprawdz aktualny stan gry"}.
 ## Use case UC49: Wejście w interakcję z kodem QR
->**⚠️Warning⚠️** 
->Should be discussed with the client in greater detail. This is a work in progress.
 ### Scenario UC49/1: An interaction has been used
 Given:
 - Interaction exists
-- Maintenance Actor has checked the state of the database entry corelating to the event about to be launched.
-0. User clicks "Idź do /qr-code"
+- User is in panel "Panel wydarzenia"
+- Maintenance Actor has checked the state of the database entry corelating to the door about to be opened
+0. User clicks "Skanuj QR"
 1. User scans the QR code.
 2. System displays a message "Interaction {interaction name} has been used".
-3. Maintenance Actor checks if an interaction was used in the database entry. The entry should have by all visible attribiutes changed state.
+3. Maintenance Actor checks if an interaction was logged in backend logs. The interaction message should be displayed in the logs.
