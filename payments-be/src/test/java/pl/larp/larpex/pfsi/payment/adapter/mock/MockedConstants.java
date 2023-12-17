@@ -4,7 +4,6 @@ import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 
-// For now these are constants since we need to somehow work out how we should get this data
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class MockedConstants {
 
