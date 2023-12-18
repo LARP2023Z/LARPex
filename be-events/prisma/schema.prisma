@@ -16,8 +16,17 @@ model Event {
   end_date   DateTime
 
   host_id String
+  price   Decimal
 
-  plays Play[]
+  plays      Play[]
+  userEvents UserEvent[]
+}
+
+model UserEvent {
+  id       String  @id @default(uuid())
+  user_id  String
+  Event    Event?  @relation(fields: [event_id], references: [id])
+  event_id String? @map("event_id")
 }
 
 model Play {

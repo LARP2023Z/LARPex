@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { PrismaClient } from "@prisma/client";
+import { Prisma, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -19,6 +19,9 @@ async function run() {
         status: faker.string.sample(),
         name: faker.person.firstName(),
         host_id: faker.string.uuid(),
+        price: new Prisma.Decimal(
+          faker.number.float({ min: 0, max: 1_000_000, precision: 0.01 })
+        ),
         start_date: faker.date.between({
           from: "2010-01-01T00:00:00.000Z",
           to: "2020-01-01T00:00:00.000Z",
