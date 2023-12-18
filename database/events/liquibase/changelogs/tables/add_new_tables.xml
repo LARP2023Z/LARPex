@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<databaseChangeLog
+   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro 
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+   <changeSet author="stankowd" id="3">
+      <createTable tableName="user_event" schemaName="dbo">
+        <column name="user_id" type="UUID"/>
+        <column name="event_id" type="UUID"/>
+      </createTable>
+      <createTable tableName="interaction" schemaName="dbo">
+         <column name="id" type="UUID">
+            <constraints nullable="false"/>
+        </column>
+        <column name="play_id" type="UUID"/>
+        <column name="effect_id" type="UUID"/>
+        <column name="type" type="varchar(255)"/>
+      </createTable>
+      <addPrimaryKey schemaName="dbo" tableName="interaction" columnNames="id" constraintName="interaction_primary_key_constraint"/>
+      <createTable tableName="effect" schemaName="dbo">
+         <column name="id" type="UUID">
+            <constraints nullable="false"/>
+        </column>
+        <column name="effect_specification_id" type="UUID"/>
+        <column name="type" type="varchar(255)"/>
+      </createTable>
+      <addPrimaryKey schemaName="dbo" tableName="effect" columnNames="id" constraintName="effect_primary_key_constraint"/>
+      <createTable tableName="reduce_rank_effect" schemaName="dbo">
+         <column name="id" type="UUID">
+            <constraints nullable="false"/>
+        </column>
+        <column name="reduce_value" type="integer"/>
+        <column name="probability_of_occuring" type="decimal(4,2)"/>
+      </createTable>
+      <addPrimaryKey schemaName="dbo" tableName="reduce_rank_effect" columnNames="id" constraintName="reduce_rank_effect_primary_key_constraint"/>
+      <createTable tableName="increase_rank_effect" schemaName="dbo">
+         <column name="id" type="UUID">
+            <constraints nullable="false"/>
+        </column>
+        <column name="increase_value" type="integer"/>
+        <column name="probability_of_occuring" type="decimal(4,2)"/>
+      </createTable>
+      <addPrimaryKey schemaName="dbo" tableName="increase_rank_effect" columnNames="id" constraintName="increase_rank_effect_primary_key_constraint"/>
+   </changeSet>
+</databaseChangeLog>
