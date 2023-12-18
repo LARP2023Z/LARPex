@@ -48,3 +48,10 @@ services:
     extends:
       file: ./payments-be/compose.yaml
       service: payments-db
+
+  # game
+  game-service:
+    extends:
+      file: ./game-service/compose.yaml
+      service: game-service
+    build: ./game-service/

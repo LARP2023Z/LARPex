@@ -1,0 +1,39 @@
+name: Build game service backend
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "game-service-be/**"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "game-service-be/**"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      working-directory: game-service-be
+
+    defaults:
+      run:
+        working-directory: ${{ env.working-directory }}
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "temurin"
+
+      - name: Set up gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Build with Gradle
+        run: ./gradlew build
