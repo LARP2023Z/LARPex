@@ -14,6 +14,7 @@ eventRouter.get("/", eventController.getEventList);
 eventRouter.post("/manager/launch", eventController.launchEvent);
 eventRouter.post("/manager/", eventController.getEventManagementDetails);
 
+
 eventRouter.post("/pay/:uid/:eid/:method", paymentController.payForEvent);
 eventRouter.get(
   "/confirm/:uid/:eid",
