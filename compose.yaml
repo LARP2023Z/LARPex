@@ -52,6 +52,6 @@ services:
   # game
   game-service:
     extends:
-      file: ./game-service/compose.yaml
+      file: ./game-service-be/compose.yaml
       service: game-service
-    build: ./game-service/
+    build: ./game-service-be/
