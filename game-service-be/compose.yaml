@@ -1,0 +1,6 @@
+services:
+  game-service:
+    image: larpex/game-service:latest
+    ports:
+      - "8086:8080"
+    build: .

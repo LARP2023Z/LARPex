@@ -2,7 +2,7 @@ services:
   payments:
     image: larpex/payments:latest
     ports:
-      - "8084:8080"
+      - "8087:8080"
     build: .
 
   payments-db:

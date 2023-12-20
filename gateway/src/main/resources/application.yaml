@@ -14,3 +14,11 @@ spring:
           uri: http://be-events-service:8083
           predicates:
             - Path=/events/**
+        - id: payments
+          uri: http://payments:8080
+          predicates:
+            - Path=/payments/**
+        - id: interactions
+          uri: http://game-service:8080
+          predicates:
+            - Path=/interactions/**
