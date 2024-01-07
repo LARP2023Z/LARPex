@@ -6,6 +6,43 @@ info:
 servers:
   - url: /
 paths:
+  /payments:
+    get:
+      tags:
+        - IPayments
+      summary: Confirm payment
+      operationId: getConfirm
+      parameters:
+        - name: command
+          in: query
+          required: true
+          schema:
+            $ref: "#/components/schemas/ConfirmPaymentCommand"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConfirmPaymentResponse"
+    post:
+      tags:
+        - IPayments
+      summary: Initialize payment
+      operationId: postConfirm
+      parameters:
+        - name: command
+          in: query
+          required: true
+          schema:
+            $ref: "#/components/schemas/InitializePaymentCommand"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InitializePaymentResponse"
   /users/{id}:
     get:
       tags:
@@ -138,6 +175,31 @@ paths:
               example:
                 error: "Invalid request parameters"
 
+  /interactions:
+    post:
+      tags:
+        - interaction-controller
+      operationId: postInteract
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InteractCommand"
+        required: true
+      responses:
+        "400":
+          description: Interaction not performed due to malformed qr code
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/InteractResponse"
+        "200":
+          description: Interaction performed
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/InteractResponse"
+
 components:
   schemas:
     UserDetailResponse:
@@ -205,3 +267,55 @@ components:
       properties:
         status:
           type: string
+    InteractCommand:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+        qrCode:
+          type: string
+    InteractResponse:
+      type: object
+      properties:
+        interactionType:
+          type: string
+          enum:
+            - OPEN_DOOR
+            - OPEN_CHEST
+    InitializePaymentCommand:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+        userId:
+          type: string
+          format: uuid
+        eventId:
+          type: string
+          format: uuid
+        paymentMethod:
+          type: string
+          enum:
+            - BLIK
+            - TRANSFER
+    InitializePaymentResponse:
+      type: object
+      properties:
+        redirectUri:
+          type: string
+    ConfirmPaymentCommand:
+      type: object
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+    ConfirmPaymentResponse:
+      type: object
+      properties:
+        exists:
+          type: boolean
