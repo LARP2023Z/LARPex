@@ -1,8 +1,9 @@
 import { PPayWnd } from '../presenters/PPayWnd';
-import { IPayments } from '../services/IPayments';
+import { IPayments, PaymentMethodDto } from '../services/IPayments';
 import { IEvents } from '../services/IEvents';
 import { IUsers } from '../services/IUsers';
 import { generateHappyUrl, generateSadUrl } from '../views/utils/utils';
+import { NavigateFunction } from 'react-router';
 
 export class UCPayForEvent {
   ppw: PPayWnd;
@@ -20,18 +21,20 @@ export class UCPayForEvent {
   payForEvent(
     eventId: string,
     userId: string, // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    utils: { changeView: (viewId: string) => void; clippy: any }
+    amount: number,
+    method: PaymentMethodDto,
+    utils: { changeView: NavigateFunction; clippy: any }
   ) {
     // Mock
 
-    this.iP.payForEvent(eventId, userId).then(
+    this.iP.payForEvent(eventId, userId, amount, method).then(
       () => {
         generateHappyUrl().subscribe((url) => {
           utils.clippy.play('Congratulate');
           utils.clippy.speak(
             'Płatność zakończona sukcesem. Gratulujemy i życzymy miłego dnia!'
           );
-          utils.changeView(url);
+          utils.changeView(url, { state: { eventId } });
         });
       },
       () => {
@@ -40,7 +43,7 @@ export class UCPayForEvent {
           utils.clippy.speak(
             'Płatność zakończona niepowodzeniem. Prosimy spróbować ponownie.'
           );
-          utils.changeView(url);
+          utils.changeView(url, { state: { eventId } });
         });
       }
     );

@@ -278,12 +278,7 @@ export class Api<
      * @request GET:/payments
      * @response `200` `ConfirmPaymentResponse` OK
      */
-    getConfirm: (
-      query: {
-        command: ConfirmPaymentCommand;
-      },
-      params: RequestParams = {}
-    ) =>
+    getConfirm: (query: ConfirmPaymentCommand, params: RequestParams = {}) =>
       this.request<ConfirmPaymentResponse, any>({
         path: `/payments`,
         method: 'GET',
@@ -302,9 +297,7 @@ export class Api<
      * @response `200` `InitializePaymentResponse` OK
      */
     postConfirm: (
-      query: {
-        command: InitializePaymentCommand;
-      },
+      query: InitializePaymentCommand,
       params: RequestParams = {}
     ) =>
       this.request<InitializePaymentResponse, any>({
