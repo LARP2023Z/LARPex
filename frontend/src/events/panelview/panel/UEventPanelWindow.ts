@@ -1,4 +1,4 @@
-import { PEventPanelWindow } from "./PEventPanelWindow";
+import { PEventPanelWindow } from './PEventPanelWindow';
 
 export class UEventPanelWindow {
   pEM: PEventPanelWindow;

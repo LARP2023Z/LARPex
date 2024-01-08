@@ -1,11 +1,8 @@
-import { MenuState } from "../../types/MenuState";
-import { ActionId } from "../../types/ActionId";
-import { UEventPanelWindow } from "./UEventPanelWindow";
+import { MenuState } from '../../types/MenuState';
+import { ActionId } from '../../types/ActionId';
+import { UEventPanelWindow } from './UEventPanelWindow';
 
-export const updateEPView = (
-  state: MenuState,
-  _action: ActionId
-) => {
+export const updateEPView = (state: MenuState, _action: ActionId) => {
   return { ...state };
 };
 

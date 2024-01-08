@@ -1,14 +1,10 @@
-import { ActionId } from "../../types/ActionId";
-import { MenuState } from "../../types/MenuState";
-import { UEventMenuWindow } from "./UEventMenuWindow";
+import { ActionId } from '../../types/ActionId';
+import { MenuState } from '../../types/MenuState';
+import { UEventMenuWindow } from './UEventMenuWindow';
 
-export const updateEMView = (
-  state: MenuState,
-  _action: ActionId
-) => {
+export const updateEMView = (state: MenuState, _action: ActionId) => {
   return { ...state };
 };
-
 
 export const CEventMenuWindow = (uEventMenu: UEventMenuWindow) => {
   function onLoadPage() {

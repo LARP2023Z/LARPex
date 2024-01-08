@@ -1,12 +1,11 @@
-import { PEventMenuWindow } from "./PEventMenuWindow";
-import { IEventPanel } from "./IEventPanel";
+import { PEventMenuWindow } from './PEventMenuWindow';
+import { IEventPanel } from './IEventPanel';
 
 export class UEventMenuWindow {
   pEM: PEventMenuWindow;
   iEP: IEventPanel;
 
-  constructor(pEM: PEventMenuWindow,
-              iEP: IEventPanel) {
+  constructor(pEM: PEventMenuWindow, iEP: IEventPanel) {
     this.pEM = pEM;
     this.iEP = iEP;
   }

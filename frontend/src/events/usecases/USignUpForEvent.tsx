@@ -1,6 +1,6 @@
-import { IEventRegistration } from "../interfaces/IEventRegistration";
-import { EventSignUpDto } from "../types/EventSignUpDto";
-import { PSignUpWindow } from "../signupview/PSignUpWindow";
+import { IEventRegistration } from '../interfaces/IEventRegistration';
+import { EventSignUpDto } from '../types/EventSignUpDto';
+import { PSignUpWindow } from '../signupview/PSignUpWindow';
 
 export class USignUpForEvent {
   pES: PSignUpWindow;
