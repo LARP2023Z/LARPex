@@ -12,7 +12,7 @@ eventRouter.use((_req, _res, next) => {
 eventRouter.get("/", eventController.getEventList);
 
 eventRouter.post("/manager/launch", eventController.launchEvent);
-eventRouter.get("/manager/", eventController.getEventManagementDetails);
+eventRouter.post("/manager/", eventController.getEventManagementDetails);
 
 eventRouter.post("/pay/:uid/:eid/:method", paymentController.payForEvent);
 eventRouter.get(
