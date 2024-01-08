@@ -4,4 +4,5 @@ export type EventsListDto = {
   host: string;
   startDate: string;
   stopDate: string;
+  status: string;
 };

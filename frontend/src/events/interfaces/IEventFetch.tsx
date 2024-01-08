@@ -1,16 +1,15 @@
-import { EventsListDto } from '../types/EventsListDto';
-import { EventListResponse } from '../types/EventListResponse';
+import { EventsListDto } from "../types/EventsListDto";
+import { EventListResponse } from "../types/EventListResponse";
 
 export interface IEventFetch {
-  listsEvents(): Promise<
-    {
-      name: string;
-      host: string;
-      uuid: string;
-      startDate: string;
-      stopDate: string;
-    }[]
-  >;
+  listsEvents(): Promise<{
+    name: string;
+    host: string;
+    uuid: string;
+    startDate: string;
+    stopDate: string;
+    status: string;
+  }[]>;
 }
 
 export class EventsProxy implements IEventFetch {
@@ -22,15 +21,15 @@ export class EventsProxy implements IEventFetch {
 
   async listsEvents(): Promise<EventsListDto[]> {
     try {
-      const response = await fetch('/api/events', {
-        method: 'GET',
+      const response = await fetch("/api/events", {
+        method: "GET",
         headers: {
-          'Content-Type': 'application/json',
-        },
+          "Content-Type": "application/json"
+        }
       });
 
       if (!response.ok) {
-        throw new Error('Failed to fetch events');
+        throw new Error("Failed to fetch events");
       }
 
       const responseData: EventListResponse[] = await response.json();
@@ -42,6 +41,7 @@ export class EventsProxy implements IEventFetch {
           host: res.hostname,
           startDate: res.startDate,
           stopDate: res.endDate,
+          status: res.status
         };
       });
     } catch (error) {
