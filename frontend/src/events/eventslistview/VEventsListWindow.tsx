@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useReducer, useState } from "react";
+import { FC, useEffect, useMemo, useReducer, useState } from 'react';
 import {
   Button,
   MenuListItem,
@@ -6,19 +6,19 @@ import {
   TextInput,
   Window,
   WindowContent,
-  WindowHeader
-} from "react95";
-import Draggable from "react-draggable";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { PEventsListWindow } from "./PEventsListWindow";
-import { UShowEventList } from "../usecases/UShowEventList";
-import { CEventsListWindow, updateELView } from "./CEventsListWindow";
-import { EventListState } from "../types/EventListState";
-import { USignUpForEvent } from "../usecases/USignUpForEvent";
-import { PSignUpWindow } from "../signupview/PSignUpWindow";
-import { CSignUpWindow } from "../signupview/CEventSignUpWindow";
-import { SignUpState } from "../types/SignUpState";
-import { currentUserId } from "src/api/user";
+  WindowHeader,
+} from 'react95';
+import Draggable from 'react-draggable';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { PEventsListWindow } from './PEventsListWindow';
+import { UShowEventList } from '../usecases/UShowEventList';
+import { CEventsListWindow, updateELView } from './CEventsListWindow';
+import { EventListState } from '../types/EventListState';
+import { USignUpForEvent } from '../usecases/USignUpForEvent';
+import { PSignUpWindow } from '../signupview/PSignUpWindow';
+import { CSignUpWindow } from '../signupview/CEventSignUpWindow';
+import { SignUpState } from '../types/SignUpState';
+import { currentUserId } from 'src/api/user';
 
 export const VEventsListWindow: FC<{
   isActive: boolean;
@@ -34,13 +34,13 @@ export const VEventsListWindow: FC<{
 
   const [searchParams] = useSearchParams();
 
-  const eventId = searchParams.get("eventId");
-  const paymentSuccess = searchParams.get("success");
+  const eventId = searchParams.get('eventId');
+  const paymentSuccess = searchParams.get('success');
 
   const [elData, elUpdateView] = useReducer(updateELView, new EventListState());
 
   const [magic, setMagic] = useState(false);
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
 
   pEL.injectDataHandles(elData, elUpdateView);
   const [onLoadPageEvent, onClickEvent] = useMemo(
@@ -56,37 +56,43 @@ export const VEventsListWindow: FC<{
   useEffect(() => {
     if (onLoadPageEvent) {
       onLoadPageEvent(
-        "Zapytać bo nie powinno być argumentów a się wykrzacza bez XD"
+        'Zapytać bo nie powinno być argumentów a się wykrzacza bez XD'
       );
     }
   }, [onLoadPageEvent]);
 
   useEffect(() => {
     if (eventId && paymentSuccess) {
-      if (paymentSuccess === "true") {
+      if (paymentSuccess === 'true') {
         onSignUpEvent({
           eventId: eventId,
-          userId: currentUserId
+          userId: currentUserId,
         });
       }
     }
   }, [eventId, paymentSuccess, onSignUpEvent]);
 
   useEffect(() => {
-      if (elData && elData.eventsList) {
-        console.log(elData.selectedEventId);
-        console.log(elData.eventsList);
-        const f = elData.eventsList.filter(ev => ev.uuid === elData.selectedEventId);
-        if (f != null && f.length === 1 && f[0].status && f[0].status === "InProgress") {
-          setMagic(true);
-          setName(f[0].name);
-        } else {
-          setMagic(false);
-        }
-        console.log(f);
+    if (elData && elData.eventsList) {
+      console.log(elData.selectedEventId);
+      console.log(elData.eventsList);
+      const f = elData.eventsList.filter(
+        (ev) => ev.uuid === elData.selectedEventId
+      );
+      if (
+        f != null &&
+        f.length === 1 &&
+        f[0].status &&
+        f[0].status === 'InProgress'
+      ) {
+        setMagic(true);
+        setName(f[0].name);
+      } else {
+        setMagic(false);
       }
-    }, [elData]
-  );
+      console.log(f);
+    }
+  }, [elData]);
   return (
     <Draggable>
       <Window>
@@ -94,14 +100,14 @@ export const VEventsListWindow: FC<{
         <WindowContent>
           <div
             style={{
-              display: "flex",
+              display: 'flex',
               gap: 8,
-              alignItems: "center"
+              alignItems: 'center',
             }}
           >
             <Button
               onClick={() => {
-                navigate("/");
+                navigate('/');
               }}
               variant="raised"
             >
@@ -124,11 +130,11 @@ export const VEventsListWindow: FC<{
           </div>
           <div
             style={{
-              display: "flex",
-              gap: 8
+              display: 'flex',
+              gap: 8,
             }}
           >
-            <ScrollView style={{ width: "450px", height: "200px" }}>
+            <ScrollView style={{ width: '450px', height: '200px' }}>
               {elData &&
                 elData.eventsList &&
                 elData.eventsList.map((data) => {
@@ -141,16 +147,17 @@ export const VEventsListWindow: FC<{
                       style={
                         elData && data.uuid === elData.selectedEventId
                           ? {
-                            background: "#05007e",
-                            color: "white"
-                          }
+                              background: '#05007e',
+                              color: 'white',
+                            }
                           : {}
                       }
                     >
-                      <p style={{ whiteSpace: "nowrap" }}>
+                      <p style={{ whiteSpace: 'nowrap' }}>
                         {/*{data.uuid};*/}
                         {/*{data.host};*/}
-                        {data.name}; {data.startDate.split("T")[0].toString()}; {data.stopDate.split("T")[0].toString()}
+                        {data.name}; {data.startDate.split('T')[0].toString()};{' '}
+                        {data.stopDate.split('T')[0].toString()}
                       </p>
                     </MenuListItem>
                   );
@@ -158,8 +165,8 @@ export const VEventsListWindow: FC<{
             </ScrollView>
             <div
               style={{
-                display: "flex",
-                flexDirection: "column"
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
               <Button active={true}>Opis</Button>
@@ -168,7 +175,7 @@ export const VEventsListWindow: FC<{
                 onClickCapture={() => {
                   if (magic) {
                     console.log(elData);
-                    navigate("/panelActiveStarted/" + name);
+                    navigate('/panelActiveStarted/' + name);
                   } else if (elData && elData.selectedEventId) {
                     navigate(`/payments?eventId=${elData.selectedEventId}`);
                     // onSignUpEvent({
@@ -186,7 +193,9 @@ export const VEventsListWindow: FC<{
                   )
                 }
               >
-                {elData && elData.selectedEventId && magic ? "Dołącz do wydarzenia" : "Zapisz się"}
+                {elData && elData.selectedEventId && magic
+                  ? 'Dołącz do wydarzenia'
+                  : 'Zapisz się'}
               </Button>
             </div>
           </div>
