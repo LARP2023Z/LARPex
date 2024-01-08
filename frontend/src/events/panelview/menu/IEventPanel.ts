@@ -27,18 +27,22 @@ export class NormalAPI implements IEventPanel {
         const manageData: ManagerReturnedType = await manageDataPromise;
 
         const dateSplit = res.startDate.split("T");
-        const eventData: EventPanelDataResponse = {
-          id: res.uuid,
-          eventName: res.name,
-          gameName: "",
-          date: dateSplit[0],
-          hour: dateSplit[1],
-          takenSeats: "",
-          allSeats: "",
-          players: mockedPlayers
-        };
+        manageData.games.forEach(
+          game => {
+            const eventData: EventPanelDataResponse = {
+              id: res.uuid,
+              eventName: res.name,
+              gameName: game.id,
+              date: dateSplit[0],
+              hour: dateSplit[1],
+              takenSeats: manageData.numberOfParticipants.toString(),
+              allSeats: manageData.numberOfParticipants.toString(),
+              players: mockedPlayers
+            };
 
-        responseList.push(eventData);
+            responseList.push(eventData);
+          }
+        );
       } catch (error) {
         console.log(error);
       }
