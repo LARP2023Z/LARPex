@@ -20,7 +20,7 @@ import { PaymentProxyMock } from '../services/Payments';
 import { formSettings } from './utils/variables';
 import { useEffect, useMemo, useReducer } from 'react';
 import { mapPaymentMethodToSelectOption } from './utils/utils';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useClippy } from '@react95/clippy';
 import { UserProxyMock } from '../services/Users';
 import { currentUserId } from 'src/api/user';
@@ -34,6 +34,9 @@ const ucPFE = new UCPayForEvent(pPW, iPay, iEv, iUser);
 
 export default function VPayWnd() {
   const { handleSubmit, control } = useForm<PaymentFormData>(formSettings);
+
+  const [searchParams] = useSearchParams();
+  const eventId = searchParams.get('eventId');
 
   const emptyData: VMPayWndData = new VMPayWndData();
   const [pwData, pwUpdateView] = useReducer(updatePayView, emptyData);
@@ -67,34 +70,40 @@ export default function VPayWnd() {
       <Window>
         <WindowHeader>Płatność</WindowHeader>
         <WindowContent>
-          <form onSubmit={handleSubmit((v) => onPaymentFormSubmit(v))}>
-            <Space gap={8}>
-              <GroupBox label="Kwota do zapłaty">
-                <Controller
-                  name="amount"
-                  control={control}
-                  render={({ field }) => <TextInput {...field} disabled />}
-                />
-              </GroupBox>
+          {eventId ? (
+            <form
+              onSubmit={handleSubmit((v) => onPaymentFormSubmit(v, eventId))}
+            >
+              <Space gap={8}>
+                <GroupBox label="Kwota do zapłaty">
+                  <Controller
+                    name="amount"
+                    control={control}
+                    render={({ field }) => <TextInput {...field} disabled />}
+                  />
+                </GroupBox>
 
-              <GroupBox label="Metoda płatności">
-                <Controller
-                  name="paymentMethod"
-                  control={control}
-                  render={({ field: { onChange, ...field } }) => (
-                    <Select
-                      {...field}
-                      onChange={(option) => onChange(option.value)}
-                      options={selectOptions}
-                    />
-                  )}
-                />
-              </GroupBox>
-              <Button fullWidth type="submit">
-                Płatność
-              </Button>
-            </Space>
-          </form>
+                <GroupBox label="Metoda płatności">
+                  <Controller
+                    name="paymentMethod"
+                    control={control}
+                    render={({ field: { onChange, ...field } }) => (
+                      <Select
+                        {...field}
+                        onChange={(option) => onChange(option.value)}
+                        options={selectOptions}
+                      />
+                    )}
+                  />
+                </GroupBox>
+                <Button fullWidth type="submit">
+                  Płatność
+                </Button>
+              </Space>
+            </form>
+          ) : (
+            <p>Błąd! Wymagane id wydarzenia</p>
+          )}
         </WindowContent>
       </Window>
     </Draggable>

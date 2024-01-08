@@ -9,7 +9,7 @@ import {
   WindowHeader,
 } from 'react95';
 import Draggable from 'react-draggable';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { PEventsListWindow } from './PEventsListWindow';
 import { UShowEventList } from '../usecases/UShowEventList';
 import { CEventsListWindow, updateELView } from './CEventsListWindow';
@@ -18,6 +18,7 @@ import { USignUpForEvent } from '../usecases/USignUpForEvent';
 import { PSignUpWindow } from '../signupview/PSignUpWindow';
 import { CSignUpWindow } from '../signupview/CEventSignUpWindow';
 import { SignUpState } from '../types/SignUpState';
+import { currentUserId } from 'src/api/user';
 
 export const VEventsListWindow: FC<{
   isActive: boolean;
@@ -31,6 +32,11 @@ export const VEventsListWindow: FC<{
 }> = ({ pEL, uSE, pSU, uSU, usData, usUpdateView }) => {
   const navigate = useNavigate();
 
+  const [searchParams] = useSearchParams();
+
+  const eventId = searchParams.get('eventId');
+  const paymentSuccess = searchParams.get('success');
+
   const [elData, elUpdateView] = useReducer(updateELView, new EventListState());
 
   pEL.injectDataHandles(elData, elUpdateView);
@@ -42,7 +48,7 @@ export const VEventsListWindow: FC<{
   pSU.injectDataHandles(usData, usUpdateView);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [onSignUpEvent, closeWindow] = CSignUpWindow(uSU);
+  const [onSignUpEvent, closeWindow] = useMemo(() => CSignUpWindow(uSU), [uSU]);
 
   useEffect(() => {
     if (onLoadPageEvent) {
@@ -51,6 +57,17 @@ export const VEventsListWindow: FC<{
       );
     }
   }, [onLoadPageEvent]);
+
+  useEffect(() => {
+    if (eventId && paymentSuccess) {
+      if (paymentSuccess === 'true') {
+        onSignUpEvent({
+          eventId: eventId,
+          userId: currentUserId,
+        });
+      }
+    }
+  }, [eventId, paymentSuccess, onSignUpEvent]);
 
   return (
     <Draggable>
@@ -131,10 +148,11 @@ export const VEventsListWindow: FC<{
               <Button
                 onClickCapture={() => {
                   if (elData && elData.selectedEventId) {
-                    onSignUpEvent({
-                      eventId: elData.selectedEventId,
-                      userId: '8ebdb302-2589-4255-b060-d70d1bc974b8',
-                    });
+                    navigate(`/payments?eventId=${elData.selectedEventId}`);
+                    // onSignUpEvent({
+                    //   eventId: elData.selectedEventId,
+                    //   userId: '8ebdb302-2589-4255-b060-d70d1bc974b8',
+                    // });
                   }
                 }}
                 active={

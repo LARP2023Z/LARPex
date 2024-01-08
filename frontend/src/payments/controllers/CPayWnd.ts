@@ -1,3 +1,4 @@
+import { currentUserId } from 'src/api/user';
 import { UCPayForEvent } from '../useCases/UCPayForEvent';
 import {
   PayAction,
@@ -5,6 +6,7 @@ import {
   PaymentFormData,
   VMPayWndData,
 } from '../viewModels/VMPayWnd';
+import { NavigateFunction } from 'react-router';
 
 export function updatePayView(
   state: VMPayWndData,
@@ -25,10 +27,18 @@ export function updatePayView(
 export function CPayWnd(
   ucPFE: UCPayForEvent,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  utils: { changeView: (viewId: string) => void; clippy: any }
+  utils: { changeView: NavigateFunction; clippy: any }
 ) {
-  function onPaymentFormSubmit(_values: PaymentFormData) {
-    ucPFE.payForEvent('eventId', 'userId', utils);
+  function onPaymentFormSubmit(values: PaymentFormData, eventId: string) {
+    const paymentMethod = values.paymentMethod === 'BLIK' ? 'BLIK' : 'TRANSFER';
+
+    ucPFE.payForEvent(
+      eventId,
+      currentUserId,
+      values.amount,
+      paymentMethod,
+      utils
+    );
   }
 
   function onPageLoadEvent() {
