@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useReducer } from 'react';
+import { FC, useEffect, useMemo, useReducer, useState } from 'react';
 import {
   Button,
   MenuListItem,
@@ -39,6 +39,9 @@ export const VEventsListWindow: FC<{
 
   const [elData, elUpdateView] = useReducer(updateELView, new EventListState());
 
+  const [magic, setMagic] = useState(false);
+  const [name, setName] = useState('');
+
   pEL.injectDataHandles(elData, elUpdateView);
   const [onLoadPageEvent, onClickEvent] = useMemo(
     () => CEventsListWindow(uSE),
@@ -69,6 +72,27 @@ export const VEventsListWindow: FC<{
     }
   }, [eventId, paymentSuccess, onSignUpEvent]);
 
+  useEffect(() => {
+    if (elData && elData.eventsList) {
+      console.log(elData.selectedEventId);
+      console.log(elData.eventsList);
+      const f = elData.eventsList.filter(
+        (ev) => ev.uuid === elData.selectedEventId
+      );
+      if (
+        f != null &&
+        f.length === 1 &&
+        f[0].status &&
+        f[0].status === 'InProgress'
+      ) {
+        setMagic(true);
+        setName(f[0].name);
+      } else {
+        setMagic(false);
+      }
+      console.log(f);
+    }
+  }, [elData]);
   return (
     <Draggable>
       <Window>
@@ -130,8 +154,10 @@ export const VEventsListWindow: FC<{
                       }
                     >
                       <p style={{ whiteSpace: 'nowrap' }}>
-                        {data.uuid};{data.host};{data.name};
-                        {data.startDate.toString()};{data.stopDate.toString()};
+                        {/*{data.uuid};*/}
+                        {/*{data.host};*/}
+                        {data.name}; {data.startDate.split('T')[0].toString()};{' '}
+                        {data.stopDate.split('T')[0].toString()}
                       </p>
                     </MenuListItem>
                   );
@@ -147,7 +173,10 @@ export const VEventsListWindow: FC<{
               <br />
               <Button
                 onClickCapture={() => {
-                  if (elData && elData.selectedEventId) {
+                  if (magic) {
+                    console.log(elData);
+                    navigate('/panelActiveStarted/' + name);
+                  } else if (elData && elData.selectedEventId) {
                     navigate(`/payments?eventId=${elData.selectedEventId}`);
                     // onSignUpEvent({
                     //   eventId: elData.selectedEventId,
@@ -164,7 +193,9 @@ export const VEventsListWindow: FC<{
                   )
                 }
               >
-                Zapisz się
+                {elData && elData.selectedEventId && magic
+                  ? 'Dołącz do wydarzenia'
+                  : 'Zapisz się'}
               </Button>
             </div>
           </div>

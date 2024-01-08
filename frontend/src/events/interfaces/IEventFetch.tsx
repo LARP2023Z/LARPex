@@ -9,6 +9,7 @@ export interface IEventFetch {
       uuid: string;
       startDate: string;
       stopDate: string;
+      status: string;
     }[]
   >;
 }
@@ -42,6 +43,7 @@ export class EventsProxy implements IEventFetch {
           host: res.hostname,
           startDate: res.startDate,
           stopDate: res.endDate,
+          status: res.status,
         };
       });
     } catch (error) {

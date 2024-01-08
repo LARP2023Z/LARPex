@@ -8,6 +8,7 @@ import VPayWnd from 'src/payments/views/VPayWnd';
 import { InnerApp } from 'src/events/InnerApp';
 import VPayResultWnd from '../payments/views/VPayResultWnd';
 import { VQrScannerWnd } from 'src/qr-scanner/VQrScannerWnd';
+import { MagicPanelForDevelopment } from '../events/interfaces/MagicPanelForDevelopment';
 
 // zmiencie sobie routy jak będzie trzeba B)
 export const routes = [
@@ -42,6 +43,10 @@ export const routes = [
   {
     path: '/payments/result',
     element: <VPayResultWnd />,
+  },
+  {
+    path: '/panelActiveStarted/:gameName',
+    element: <MagicPanelForDevelopment />,
   },
 ];
 
