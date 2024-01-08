@@ -15,3 +15,17 @@ export type PlayerData = {
   job: string
   className: string
 }
+
+export type ManagerReturnedType = {
+  status: string
+  eventId: string
+  name: string
+  hostId: string
+  startDate: string
+  endDate: string
+  games: {
+    id: string
+  } [],
+  numberOfParticipants: 0;
+  price: number
+}
