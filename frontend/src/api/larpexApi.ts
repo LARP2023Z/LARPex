@@ -20,6 +20,70 @@ export interface UserDetailResponse {
   email?: string;
 }
 
+export type EventListResponse = {
+  /** @format uuid */
+  eventId?: string;
+  name?: string;
+  hostname?: string;
+  startDate?: string;
+}[];
+
+export interface EventDetailsResponse {
+  /** @format uuid */
+  eventId?: string;
+  name?: string;
+  hostname?: string;
+  /** @format date */
+  startDate?: string;
+  /** @format date */
+  endDate?: string;
+  status?: string;
+  isCurrentUserParticipating?: boolean;
+  games?: {
+    /** @format uuid */
+    id?: string;
+  }[];
+}
+
+export interface SignUpResponse {
+  status?: string;
+}
+
+export interface InteractCommand {
+  /** @format uuid */
+  userId?: string;
+  qrCode?: string;
+}
+
+export interface InteractResponse {
+  interactionType?: 'OPEN_DOOR' | 'OPEN_CHEST';
+}
+
+export interface InitializePaymentCommand {
+  /** @format double */
+  amount?: number;
+  /** @format uuid */
+  userId?: string;
+  /** @format uuid */
+  eventId?: string;
+  paymentMethod?: 'BLIK' | 'TRANSFER';
+}
+
+export interface InitializePaymentResponse {
+  redirectUri?: string;
+}
+
+export interface ConfirmPaymentCommand {
+  /** @format uuid */
+  eventId?: string;
+  /** @format uuid */
+  userId?: string;
+}
+
+export interface ConfirmPaymentResponse {
+  exists?: boolean;
+}
+
 import type {
   AxiosInstance,
   AxiosRequestConfig,
@@ -204,6 +268,53 @@ export class HttpClient<SecurityDataType = unknown> {
 export class Api<
   SecurityDataType extends unknown
 > extends HttpClient<SecurityDataType> {
+  payments = {
+    /**
+     * No description
+     *
+     * @tags IPayments
+     * @name GetConfirm
+     * @summary Confirm payment
+     * @request GET:/payments
+     * @response `200` `ConfirmPaymentResponse` OK
+     */
+    getConfirm: (
+      query: {
+        command: ConfirmPaymentCommand;
+      },
+      params: RequestParams = {}
+    ) =>
+      this.request<ConfirmPaymentResponse, any>({
+        path: `/payments`,
+        method: 'GET',
+        query: query,
+        format: 'json',
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags IPayments
+     * @name PostConfirm
+     * @summary Initialize payment
+     * @request POST:/payments
+     * @response `200` `InitializePaymentResponse` OK
+     */
+    postConfirm: (
+      query: {
+        command: InitializePaymentCommand;
+      },
+      params: RequestParams = {}
+    ) =>
+      this.request<InitializePaymentResponse, any>({
+        path: `/payments`,
+        method: 'POST',
+        query: query,
+        format: 'json',
+        ...params,
+      }),
+  };
   users = {
     /**
      * No description
@@ -227,50 +338,70 @@ export class Api<
     /**
      * @description Retrieve a list of events.
      *
-     * @tags events
      * @name EventsList
      * @summary Get Events List
      * @request GET:/events
-     * @response `200` `void` Successful response
+     * @response `200` `(EventListResponse)[]` Successful response
+     * @response `400` `void` Bad Request
      */
     eventsList: (params: RequestParams = {}) =>
-      this.request<void, any>({
+      this.request<EventListResponse[], void>({
         path: `/events`,
         method: 'GET',
+        format: 'json',
         ...params,
       }),
 
     /**
      * @description Retrieve details of a specific event.
      *
-     * @tags events
      * @name EventsDetail
      * @summary Get Event Details
      * @request GET:/events/{id}
-     * @response `200` `void` Successful response
+     * @response `200` `EventDetailsResponse` Successful response
+     * @response `400` `void` Bad Request
      */
     eventsDetail: (id: string, params: RequestParams = {}) =>
-      this.request<void, any>({
+      this.request<EventDetailsResponse, void>({
         path: `/events/${id}`,
         method: 'GET',
+        format: 'json',
         ...params,
       }),
 
     /**
      * @description Sign up a user for a specific event.
      *
-     * @tags events
-     * @name EventsDetail2
+     * @name EventsCreate
      * @summary Sign Up for Event
-     * @request GET:/events/{uid}/{eid}
-     * @originalName eventsDetail
-     * @duplicate
-     * @response `200` `void` Successful response
+     * @request POST:/events/{uid}/{eid}
+     * @response `200` `SignUpResponse` Successful response
+     * @response `400` `void` Bad Request
      */
-    eventsDetail2: (uid: string, eid: string, params: RequestParams = {}) =>
-      this.request<void, any>({
+    eventsCreate: (uid: string, eid: string, params: RequestParams = {}) =>
+      this.request<SignUpResponse, void>({
         path: `/events/${uid}/${eid}`,
-        method: 'GET',
+        method: 'POST',
+        format: 'json',
+        ...params,
+      }),
+  };
+  interactions = {
+    /**
+     * No description
+     *
+     * @tags interaction-controller
+     * @name PostInteract
+     * @request POST:/interactions
+     * @response `200` `InteractResponse` Interaction performed
+     * @response `400` `InteractResponse` Interaction not performed due to malformed qr code
+     */
+    postInteract: (data: InteractCommand, params: RequestParams = {}) =>
+      this.request<InteractResponse, InteractResponse>({
+        path: `/interactions`,
+        method: 'POST',
+        body: data,
+        type: ContentType.Json,
         ...params,
       }),
   };

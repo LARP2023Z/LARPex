@@ -1,4 +1,4 @@
-import React, { useMemo, useReducer } from 'react';
+import { useMemo, useReducer } from 'react';
 import { Window, WindowContent, WindowHeader } from 'react95';
 import Draggable from 'react-draggable';
 import { useClippy } from '@react95/clippy';
@@ -12,10 +12,10 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { VMQrScannerWndData } from './viewModels/VMQrScannerWnd';
 import { QrReaderWrapper } from './styles';
-import { QrCode } from './services/QrCode';
+import { Interactions } from './services/QrCode';
 
 const pQS = new PQrScanner();
-const iQc = new QrCode();
+const iQc = new Interactions();
 const ucPQC = new UCProcessQrCode(pQS, iQc);
 
 export function VQrScannerWnd() {
@@ -28,8 +28,12 @@ export function VQrScannerWnd() {
   const navigate = useNavigate();
 
   const { onQrCodeScanned } = useMemo(
-    () => CQRScannerWnd(ucPQC, { changeView: navigate, clippy }),
-    [clippy, navigate]
+    () =>
+      CQRScannerWnd(ucPQC, {
+        changeView: navigate,
+        clippy,
+      }),
+    [navigate, clippy]
   );
 
   return (
@@ -38,7 +42,10 @@ export function VQrScannerWnd() {
         <WindowHeader>QR Scanner</WindowHeader>
         <WindowContent>
           <Space gap={8}>
-            <QrReaderWrapper onResult={onQrCodeScanned} constraints={{}} />
+            {clippy && (
+              <QrReaderWrapper onResult={onQrCodeScanned} constraints={{}} />
+            )}
+
             <p>{qrData.currentCode}</p>
           </Space>
         </WindowContent>
