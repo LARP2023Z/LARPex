@@ -5,6 +5,7 @@ import {
   QrScannerActionId,
   VMQrScannerWndData,
 } from '../viewModels/VMQrScannerWnd';
+import { debounce } from 'lodash';
 
 export function updateQRScannerView(
   state: VMQrScannerWndData,
@@ -24,15 +25,23 @@ export function CQRScannerWnd(
   utils: { changeView: (viewId: string) => void; clippy: any }
 ) {
   console.log(utils);
+
+  const boundProcessQrCode = ucPQC.processQrCode.bind(ucPQC);
+
+  const debouncedProcessQrCode = debounce(boundProcessQrCode, 5000, {
+    leading: true,
+    trailing: false,
+  });
+
   const onQrCodeScanned: OnResultFunction = (result, error) => {
     if (error) {
       console.log(error);
       return;
     }
 
-    alert(result?.getText() ?? '');
+    console.log(utils);
 
-    ucPQC.processQrCode(result?.getText() ?? '', utils);
+    debouncedProcessQrCode(result?.getText() ?? '', utils);
   };
 
   return {
