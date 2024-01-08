@@ -1,63 +1,65 @@
-import { EventPanelDataResponse } from "../../types/EventPanelDataResponse";
+import { EventPanelDataResponse, ManagerReturnedType } from "../../types/EventPanelDataResponse";
+import { EventsProxy, IEventFetch } from "../../interfaces/IEventFetch";
 
 export interface IEventPanel {
-  getEventData(): EventPanelDataResponse[];
+  getEventData(): Promise<EventPanelDataResponse[]>;
 }
 
+export class NormalAPI implements IEventPanel {
+  iEventPanel: IEventFetch = new EventsProxy("localhost:8080");
 
-export class MockedAPI implements IEventPanel {
-  getEventData(): EventPanelDataResponse[] {
-    return [
-      {
-        id: "1",
-        eventName: "Wydarzenie 1",
-        gameName: "Gra 1",
-        date: "14/04/2023",
-        hour: "12:00-14:00",
-        takenSeats: "5",
-        allSeats: "5",
-        players: [
-          {
-            name: "Gracz 1",
-            character: "postać 1",
-            job: "profesja 1",
-            className: "klasa 1"
-          }
-        ]
-      }, {
-        id: "2",
-        eventName: "Wydarzenie 2",
-        gameName: "Gra 2",
-        date: "02/04/2005",
-        hour: "21:00-22:00",
-        takenSeats: "10",
-        allSeats: "20",
-        players: [
-          {
-            name: "Gracz 1",
-            character: "postać 1",
-            job: "profesja 1",
-            className: "klasa 1"
-          }
-        ]
-      }, {
-        id: "3",
-        eventName: "Wydarzenie 3",
-        gameName: "Gra 3",
-        date: "11/09/2001",
-        hour: "8:46-10:28",
-        takenSeats: "21",
-        allSeats: "37",
-        players: [
-          {
-            name: "Gracz 1",
-            character: "postać 1",
-            job: "profesja 1",
-            className: "klasa 1"
-          }
-        ]
+  async getEventData(): Promise<EventPanelDataResponse[]> {
+    const events = await this.iEventPanel.listsEvents();
+    const responseList: EventPanelDataResponse[] = [];
+
+    const eventPromises = events.map(async (res) => {
+      try {
+        const manageDataPromise = fetch("/api/events/manager", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            eventId: res.uuid
+          })
+        }).then((res) => res.json()).catch(() => []) as Promise<ManagerReturnedType>;
+
+        const manageData: ManagerReturnedType = await manageDataPromise;
+
+        const dateSplit = res.startDate.split("T");
+        const eventData: EventPanelDataResponse = {
+          id: res.uuid,
+          eventName: res.name,
+          gameName: "",
+          date: dateSplit[0],
+          hour: dateSplit[1],
+          takenSeats: "",
+          allSeats: "",
+          players: mockedPlayers
+        };
+
+        responseList.push(eventData);
+      } catch (error) {
+        console.log(error);
       }
-    ];
+    });
+
+    await Promise.all(eventPromises);
+
+    console.log("DUPA");
+    console.log(responseList);
+    return responseList;
   }
 
+
 }
+
+
+const mockedPlayers = [
+  {
+    name: "Gracz 1",
+    character: "postać 1",
+    job: "profesja 1",
+    className: "klasa 1"
+  }
+];

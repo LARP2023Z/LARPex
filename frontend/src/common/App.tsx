@@ -24,8 +24,12 @@ export const routes = [
     element: <InnerApp />
   },
   {
-    path: "/panel",
-    element: <InnerApp />
+    path: '/panel',
+    element: <InnerApp />,
+  },
+  {
+    path: '/payments',
+    element: <VPayWnd />,
   },
   {
     path: "/payments",

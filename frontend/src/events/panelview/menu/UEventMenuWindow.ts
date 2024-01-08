@@ -23,8 +23,8 @@ export class UEventMenuWindow {
     this.pEM.handleShowEventPanel(e);
   }
 
-  loadPageData() {
-    const data = this.iEP.getEventData();
+  async loadPageData() {
+    const data = await this.iEP.getEventData();
     this.pEM.handleShowMenuEvents(data);
   }
 }

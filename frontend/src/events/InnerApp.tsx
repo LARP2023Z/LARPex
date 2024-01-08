@@ -13,7 +13,7 @@ import { SignUpState } from "./types/SignUpState";
 import { VEventMenuWindow } from "./panelview/menu/VEventMenuWindow";
 import { UEventMenuWindow } from "./panelview/menu/UEventMenuWindow";
 import { PEventMenuWindow } from "./panelview/menu/PEventMenuWindow";
-import { IEventPanel, MockedAPI } from "./panelview/menu/IEventPanel";
+import { IEventPanel, NormalAPI } from "./panelview/menu/IEventPanel";
 import { useLocation } from "react-router";
 import { VEventPanelWindow } from "./panelview/panel/VEventPanelWindow";
 import { useNavigate } from "react-router-dom";
@@ -37,7 +37,7 @@ const iER: IEventRegistration = eRegistration;
 
 const uSU: USignUpForEvent = new USignUpForEvent(pSU, iER);
 
-const iEM: IEventPanel = new MockedAPI();
+const iEM: IEventPanel = new NormalAPI();
 const pEM: PEventMenuWindow = new PEventMenuWindow();
 
 const uEM: UEventMenuWindow = new UEventMenuWindow(pEM, iEM);
