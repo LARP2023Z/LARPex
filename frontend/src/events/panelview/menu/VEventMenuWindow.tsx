@@ -58,8 +58,9 @@ export const VEventMenuWindow: FC<{
                     }
                   >
                     <p style={{ whiteSpace: 'nowrap' }}>
-                      {data.eventName}; {data.gameName}; {data.date};{' '}
-                      {data.hour}; {data.takenSeats}/{data.allSeats} uczestników
+                      {data.eventName};{/*{data.gameName};*/}
+                      {data.date}; {data.hour}; {data.takenSeats}/
+                      {data.allSeats} uczestników
                     </p>
                   </MenuListItem>
                 );

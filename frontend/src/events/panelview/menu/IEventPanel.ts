@@ -38,7 +38,7 @@ export class NormalAPI implements IEventPanel {
             eventName: res.name,
             gameName: game.id,
             date: dateSplit[0],
-            hour: dateSplit[1],
+            hour: dateSplit[1].split('.')[0],
             takenSeats: manageData.numberOfParticipants.toString(),
             allSeats: manageData.numberOfParticipants.toString(),
             players: mockedPlayers,
