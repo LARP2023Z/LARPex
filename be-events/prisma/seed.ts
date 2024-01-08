@@ -16,7 +16,7 @@ async function run() {
     .fill(null)
     .map(() => {
       return {
-        status: faker.string.sample(),
+        status: "Planned",
         name: faker.person.firstName(),
         host_id: faker.string.uuid(),
         price: new Prisma.Decimal(
