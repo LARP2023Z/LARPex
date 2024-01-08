@@ -1,5 +1,9 @@
 import { Request, Response } from "express";
-import { eventsFetch, eventsRegistration } from "../services/event.service";
+import {
+  eventManager,
+  eventsFetch,
+  eventsRegistration,
+} from "../services/event.service";
 
 const getEventList = async (_req: Request, res: Response) => {
   try {
@@ -31,8 +35,30 @@ const signUp = async (req: Request, res: Response) => {
   }
 };
 
+const launchEvent = async (req: Request, res: Response) => {
+  const command = req.body;
+  try {
+    const response = await eventManager.launchEvent(command);
+    res.json(response);
+  } catch (err: any) {
+    res.status(400).json({ status: err.message });
+  }
+};
+
+const getEventManagementDetails = async (req: Request, res: Response) => {
+  const command = req.body;
+  try {
+    const response = await eventManager.getEventManagementDetails(command);
+    res.json(response);
+  } catch (err: any) {
+    res.status(400).json({ status: err.message });
+  }
+};
+
 export default {
   getEventList,
   getDetailEvent,
   signUp,
+  launchEvent,
+  getEventManagementDetails,
 };
